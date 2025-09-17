@@ -1,0 +1,707 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddpumhbejxq77"]
+
+[ext_resource type="FontFile" path="res://plex_mono_16.tres" id="1"]
+[ext_resource type="Script" uid="uid://cx2d0ptsghlo4" path="res://Game.gd" id="3"]
+[ext_resource type="FontFile" path="res://plex_mono_24.tres" id="4"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.498039, 0.494118, 0.494118, 1)
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.498039, 0.498039, 0.498039, 1)
+
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.498039, 0.501961, 0.501961, 1)
+
+[node name="Game" type="Control"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3")
+
+[node name="UI" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+anchor_right = 1.003
+anchor_bottom = 1.0
+offset_right = -3.84009
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GameInfo" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PlayerInfo" type="VBoxContainer" parent="UI/MarginContainer/GameInfo"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("5")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Party_Margin" type="VBoxContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Adventurer_Label" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+text = "Adventurer"
+
+[node name="Ancestry_and_Job" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Ancestry_and_Job"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Name: Blorbo
+Ancestry: Halfling
+Job: Rogue - 1"
+
+[node name="Health_box" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin"]
+layout_mode = 2
+
+[node name="HP_num" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Health_box"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Hit Points: 15/15"
+
+[node name="Stats" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+columns = 6
+
+[node name="STR" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "STR"
+horizontal_alignment = 1
+
+[node name="DEX" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "DEX"
+horizontal_alignment = 1
+
+[node name="CON" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "CON"
+horizontal_alignment = 1
+
+[node name="INT" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "INT"
+horizontal_alignment = 1
+
+[node name="WIS" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "WIS"
+horizontal_alignment = 1
+
+[node name="CHA" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "CHA"
+horizontal_alignment = 1
+
+[node name="STR_NUM" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+0"
+horizontal_alignment = 1
+
+[node name="DEX_NUM" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+3"
+horizontal_alignment = 1
+
+[node name="CON_NUM" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+1"
+horizontal_alignment = 1
+
+[node name="INT_NUM" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+2"
+horizontal_alignment = 1
+
+[node name="WIS_NUM" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+1"
+horizontal_alignment = 1
+
+[node name="CHA_NUM" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Stats/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+2"
+horizontal_alignment = 1
+
+[node name="AC_and_Saves" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+columns = 4
+
+[node name="AC" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "AC"
+horizontal_alignment = 1
+
+[node name="Fortitude" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "FORT"
+horizontal_alignment = 1
+
+[node name="Reflex" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "REF"
+horizontal_alignment = 1
+
+[node name="Will" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "WILL"
+horizontal_alignment = 1
+
+[node name="AC_num" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "14"
+horizontal_alignment = 1
+
+[node name="Fort_num" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+4"
+horizontal_alignment = 1
+
+[node name="Ref_num" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+8"
+horizontal_alignment = 1
+
+[node name="Will_num" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/AC_and_Saves/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1")
+text = "+4"
+horizontal_alignment = 1
+
+[node name="Weapons" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Weapons"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Weapons/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 5
+columns = 2
+
+[node name="Weapon_1" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Weapons/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Dagger"
+
+[node name="Weapon_1_dmg" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Weapons/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "1d4+3 P/S"
+horizontal_alignment = 2
+
+[node name="Weapon_2" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Weapons/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Hand Crossbow"
+
+[node name="Weapon_2_dmg" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Weapons/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "1d6 P"
+horizontal_alignment = 2
+
+[node name="Currency" type="VBoxContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+text = "Currency"
+
+[node name="GridContainer" type="GridContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 4
+
+[node name="Plat_Label" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Platinum_Symbol" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Plat_Label"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "P"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Gold_Label" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Gold_Symbol" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Gold_Label"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "G"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Silver_Label" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Silver_Symbol" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Silver_Label"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Copper_Label" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Copper_Symbol" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Copper_Label"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Plat_Count" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="P" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Plat_Count"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "1"
+horizontal_alignment = 1
+
+[node name="Gold_Count" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="G" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Gold_Count"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "3"
+horizontal_alignment = 1
+
+[node name="Silver_Count" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="S" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Silver_Count"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "6"
+horizontal_alignment = 1
+
+[node name="Copper_Count" type="PanelContainer" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="C" type="Label" parent="UI/MarginContainer/GameInfo/PlayerInfo/PanelContainer/MarginContainer/Party_Margin/Currency/GridContainer/Copper_Count"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "9"
+horizontal_alignment = 1
+
+[node name="DisplayAndActions" type="VBoxContainer" parent="UI/MarginContainer/GameInfo"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="DisplayInfo" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("2")
+
+[node name="Scroll" type="ScrollContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/DisplayInfo"]
+layout_mode = 2
+
+[node name="HistoryRows" type="VBoxContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/DisplayInfo/Scroll"]
+custom_minimum_size = Vector2(301, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="ActionArea" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("3")
+
+[node name="ButtonContainer" type="GridContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Interact" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Interact"
+
+[node name="PanelContainer2" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="North" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "North"
+
+[node name="PanelContainer3" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Inspect" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Inspect"
+
+[node name="PanelContainer4" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer4"]
+layout_mode = 2
+
+[node name="PanelContainer5" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Help" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Help"
+
+[node name="PanelContainer6" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="West" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "West"
+
+[node name="PanelContainer7" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="South" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "South"
+
+[node name="PanelContainer8" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="East" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "East"
+
+[node name="PanelContainer9" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer9"]
+layout_mode = 2
+
+[node name="PanelContainer10" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer10"]
+layout_mode = 2
+
+[node name="PanelContainer11" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer11"]
+layout_mode = 2
+
+[node name="PanelContainer12" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer12"]
+layout_mode = 2
+
+[node name="PanelContainer13" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Inventory" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer13"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Inventory"
+
+[node name="PanelContainer14" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spells" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer14"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+text = "Spells"
+
+[node name="PanelContainer15" type="PanelContainer" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/MarginContainer/GameInfo/DisplayAndActions/ActionArea/ButtonContainer/PanelContainer15"]
+layout_mode = 2
+
+[node name="MapAndMonsters" type="VBoxContainer" parent="UI/MarginContainer/GameInfo"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("6")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Map_Header" type="Label" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4")
+text = "Map - Level 1"
+
+[node name="Map_Panel" type="PanelContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="???" type="PanelContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Menus" type="VBoxContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Menu Buttons" type="HBoxContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Journal" type="PanelContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Journal_Button" type="Button" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Buttons/Journal"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Data" type="PanelContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Data_Button" type="Button" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Buttons/Data"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Menu" type="PanelContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Menu_Button" type="Button" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Buttons/Menu"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Menu Labels" type="HBoxContainer" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus"]
+layout_mode = 2
+
+[node name="Journal_Label" type="Label" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1")
+text = "Journal"
+horizontal_alignment = 1
+
+[node name="Data_Label2" type="Label" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1")
+text = "Data"
+horizontal_alignment = 1
+
+[node name="Menu_Label" type="Label" parent="UI/MarginContainer/GameInfo/MapAndMonsters/PanelContainer/MarginContainer/VBoxContainer/Menus/Menu Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1")
+text = "Menu"
+horizontal_alignment = 1

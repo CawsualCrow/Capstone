@@ -1,0 +1,15 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1758074225
+default_env.tres::Environment/Environment::1335214565229665021::1755796276::0::1::::<><><>0<>0<><>::
+Exploration.tscn::PackedScene/PackedScene::7402030387089432744::1755796276::0::1::::<><><>0<>0<><>::res://plex_mono_16.tres<>uid://cx2d0ptsghlo4::::res://Game.gd<>res://plex_mono_24.tres
+Game.gd::GDScript/GDScript::6443150584274162749::1752537233::0::1::::<>Control<><>0<>0<><>::
+Game.tscn::PackedScene/PackedScene::-1::1752537233::0::1::::<><><>0<>0<><>::res://Input.gd<>res://plex_mono_28.tres<>res://Game.gd
+IBMPlexMono-Regular.ttf::FontFile/FontFile::739345703773126533::1740079509::1752537461::1::::<><><>0<>0<>1d749ca708b088c1049072a512718611<>res://.godot/imported/IBMPlexMono-Regular.ttf-8245a5e363e0d9865175e0cd4684a09d.fontdata::
+IBMPlexMono-SemiBold.ttf::FontFile/FontFile::7269018887273508430::1740079509::1752537461::1::::<><><>0<>0<>4e1cb324165179bf792615626d5ca07e<>res://.godot/imported/IBMPlexMono-SemiBold.ttf-53a37654b942709739c0ca1fdfe5ca1b.fontdata::
+icon.png::CompressedTexture2D/CompressedTexture2D::1251048058469491476::1740075295::1752537461::1::::<><><>0<>0<>b09eb856b5064b32caa82f6e712a7fd4<>res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex::
+Input.gd::GDScript/GDScript::2737007493426728507::1752537233::0::1::::<>LineEdit<><>0<>0<><>::
+InputResponse.gd::GDScript/GDScript::3762169753588715708::1752537233::0::1::::<>VBoxContainer<><>0<>0<><>::
+InputResponse.tscn::PackedScene/PackedScene::-1::1752537233::0::1::::<><><>0<>0<><>::res://plex_mono_28.tres<>res://plex_mono_24.tres<>res://InputResponse.gd
+plex_mono_16.tres::FontFile/FontFile::-1::1752537233::0::1::::<><><>0<>0<><>::res://IBMPlexMono-Regular.ttf
+plex_mono_24.tres::FontFile/FontFile::-1::1752537233::0::1::::<><><>0<>0<><>::res://IBMPlexMono-Regular.ttf
+plex_mono_28.tres::FontFile/FontFile::-1::1752537233::0::1::::<><><>0<>0<><>::res://IBMPlexMono-Regular.ttf
