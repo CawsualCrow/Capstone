@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://nrroi0etkdld"]
+
+[ext_resource type="Script" uid="uid://df5rktxjdkdt5" path="res://game.gd" id="1_wbfu4"]
+
+[node name="Game" type="CanvasLayer"]
+script = ExtResource("1_wbfu4")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.125
+anchor_right = 0.87500006
+anchor_bottom = 0.32500002
+offset_right = -3.0517578e-05
+offset_bottom = -1.5258789e-05
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Increase the Number!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 158.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CounterButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.35200003
+anchor_right = 0.82500005
+anchor_bottom = 0.517
+offset_left = 0.19999695
+offset_top = -0.2000122
+offset_right = 2.9999695
+offset_bottom = -0.2000122
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Increment Counter"
+
+[connection signal="pressed" from="CounterButton" to="." method="_on_counter_button_pressed"]
