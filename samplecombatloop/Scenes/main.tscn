@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyq1816yjcpp8"]
+
+[ext_resource type="Script" uid="uid://c8ql6gc1c0fe2" path="res://Scripts/game_manager.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://cegfgqsxxut3y" path="res://Scenes/character.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://ch5omilvi1hxd" path="res://Scripts/combat_action.gd" id="3_21xkr"]
+[ext_resource type="Resource" uid="uid://cq5c8aytvr4vs" path="res://Combat Actions/slash.tres" id="4_6bp64"]
+[ext_resource type="Resource" uid="uid://bqb0vmtqjgbdt" path="res://Combat Actions/heal.tres" id="5_344ge"]
+[ext_resource type="Resource" uid="uid://c2qn7tnl0swhb" path="res://Combat Actions/heavy_hit.tres" id="6_ynf5e"]
+[ext_resource type="Script" uid="uid://ds2agsx3ftdc5" path="res://Scenes/hud.gd" id="7_6bp64"]
+[ext_resource type="Script" uid="uid://wh8vwb6t2pfv" path="res://Scripts/health_label.gd" id="8_344ge"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("player_character", "ai_character")]
+script = ExtResource("1_bo1nx")
+player_character = NodePath("Player_Character")
+ai_character = NodePath("AI_Character")
+slash = ExtResource("4_6bp64")
+heal = ExtResource("5_344ge")
+
+[node name="Player_Character" parent="." instance=ExtResource("2_bo1nx")]
+is_player = true
+cur_health = 50
+max_health = 50
+combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResource("5_344ge"), ExtResource("6_ynf5e")])
+
+[node name="AI_Character" parent="." instance=ExtResource("2_bo1nx")]
+cur_health = 50
+max_health = 50
+combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResource("5_344ge"), ExtResource("6_ynf5e")])
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("7_6bp64")
+
+[node name="Slash" type="Button" parent="HUD"]
+offset_left = 293.0
+offset_top = 409.0
+offset_right = 393.0
+offset_bottom = 486.0
+text = "Slash"
+
+[node name="Heal" type="Button" parent="HUD"]
+offset_left = 702.0
+offset_top = 415.0
+offset_right = 822.0
+offset_bottom = 497.0
+text = "Heal"
+
+[node name="Player Health" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("8_344ge")
+
+[node name="AI Health" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("8_344ge")
+
+[connection signal="pressed" from="HUD/Slash" to="." method="_on_slash_pressed"]
+[connection signal="pressed" from="HUD/Heal" to="." method="_on_heal_pressed"]

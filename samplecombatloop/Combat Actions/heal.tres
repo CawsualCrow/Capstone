@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=2 format=3 uid="uid://bqb0vmtqjgbdt"]
+
+[ext_resource type="Script" uid="uid://ch5omilvi1hxd" path="res://Scripts/combat_action.gd" id="1_f3m6k"]
+
+[resource]
+script = ExtResource("1_f3m6k")
+display_name = "Heal"
+description = "Heal HP"
+melee_damage = 0
+heal_amount = 10
+base_weight = 100
+metadata/_custom_type_script = "uid://ch5omilvi1hxd"
