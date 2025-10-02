@@ -65,8 +65,10 @@ func heal (amount : int):
 	health_change.emit()
 
 func cast_combat_action (action : CombatAction, opponent : Character):
-	heal(action.heal_amount + intelligence_bonus)
-	opponent.take_damage(action.melee_damage + strength_bonus)
+	if (action.heal_amount > 0):
+		heal(action.heal_amount + intelligence_bonus)
+	if (action.melee_damage > 0):
+		opponent.take_damage(action.melee_damage + strength_bonus)
 
 func _play_audio (steam : AudioStream):
 	pass

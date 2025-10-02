@@ -60,6 +60,7 @@ offset_bottom = 188.0
 script = ExtResource("8_344ge")
 
 [node name="Character Creator" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="CC_Title" type="Label" parent="Character Creator"]
 offset_left = 441.0
