@@ -56,6 +56,7 @@ func take_damage (amount : int):
 	health_change.emit()
 	if (cur_health <= 0):
 		health_depleted.emit()
+		
 	
 
 func heal (amount : int):
