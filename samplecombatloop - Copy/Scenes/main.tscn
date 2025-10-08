@@ -60,7 +60,6 @@ offset_bottom = 188.0
 script = ExtResource("8_344ge")
 
 [node name="Character Creator" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="CC_Title" type="Label" parent="Character Creator"]
 offset_left = 441.0
@@ -74,6 +73,7 @@ offset_left = 94.0
 offset_top = 225.0
 offset_right = 162.0
 offset_bottom = 248.0
+theme_override_font_sizes/font_size = 24
 text = "Ancestry"
 
 [node name="Job_Title" type="Label" parent="Character Creator"]
@@ -81,6 +81,7 @@ offset_left = 531.0
 offset_top = 218.0
 offset_right = 571.0
 offset_bottom = 241.0
+theme_override_font_sizes/font_size = 24
 text = "Job"
 
 [node name="Boost_Title" type="Label" parent="Character Creator"]
