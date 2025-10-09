@@ -14,21 +14,16 @@ var current_character : Character
 
 # add end of game upon true
 var game_over : bool = false
+var combat_over : bool = false
 
 func _ready():
 	$"Character Creator".show()
 	$HUD.hide()
+	$Level_Up_Screen.hide()
 
 
 func next_turn ():
-	if game_over:
-		if ($Player_Character.cur_health <= 0):
-			print("You Lose! Game Over!")
-		elif ($AI_Character.cur_health <= 0):
-			print("You win!")
-	# add game logic end
-		
-	if current_character != null:
+	if current_character != null: # swapping between characters
 		current_character.end_turn()
 	
 	if current_character == ai_character or current_character == null:
@@ -38,28 +33,37 @@ func next_turn ():
 		
 	current_character.begin_turn()
 	
-	if current_character.is_player:
+	if current_character.is_player: # Take player turn
 		$HUD.reveal_hud()
 		# enable and set player ui
 		
-	else:
+	elif ($AI_Character.cur_health > 0): # AI is still alive
 		# disable player ui
 		$HUD.hide_hud()
-		var wait_time = randf_range(0.5, 1.5)
+		var wait_time = randf_range(0.5, 1.5) # wait time for ai turn
 		await get_tree().create_timer(wait_time).timeout
 		
-		var action_to_cast = ai_decide_combat_action()
+		var action_to_cast = ai_decide_combat_action() # ai choice of action
 		ai_character.cast_combat_action(action_to_cast, player_character)
 		
-		await get_tree().create_timer(0.5).timeout
-		next_turn()
+		await get_tree().create_timer(0.5).timeout # wait time for ai action
+		
+		if ($Player_Character.cur_health <= 0): # check if player dead
+			end_combat() # combat ends if player dead
+		else: 
+			next_turn() # combat continues otherwise
+			
+	else: # ai is defeated
+		end_combat()
+		
 
-func end_combat ():
+func end_combat (): # handles player or ai death
 	$HUD.hide()
 	if ($Player_Character.cur_health <= 0):
 		print("You Lose!")
 	elif ($AI_Character.cur_health <= 0):
 		print("You win!")
+		$Level_Up_Screen.show()
 
 func player_cast_combat_action (action : CombatAction):
 	if player_character != current_character:
@@ -95,14 +99,34 @@ func _on_start_game_pressed() -> void:
 
 func _on_player_character_health_change():
 	$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
-	# print("player damage hud is being called")
-
 
 func _on_ai_character_health_change() -> void:
 	$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
 	
-
 func _on_player_character_health_depleted() -> void:
 	game_over = true
 func _on_ai_character_health_depleted() -> void:
 	game_over = true
+
+#func _on_finish_level_up_pressed() -> void:
+	#$AI_Character.max_health += 10
+	#$AI_Character.cur_health = $AI_Character.max_health
+	#$AI_Character.strength_bonus += 2
+	#$Level_Up_Screen.hide()
+	#$HUD.show()
+	#$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
+	#$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
+	#
+	#next_turn()
+
+
+func _on_player_character_leveled_up() -> void:
+	$AI_Character.max_health += 10
+	$AI_Character.cur_health = $AI_Character.max_health
+	$AI_Character.strength_bonus += 2
+	$Level_Up_Screen.hide()
+	$HUD.show()
+	$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
+	$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
+	
+	next_turn()

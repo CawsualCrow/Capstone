@@ -18,13 +18,11 @@ heal = ExtResource("5_344ge")
 
 [node name="Player_Character" parent="." instance=ExtResource("2_bo1nx")]
 is_player = true
-cur_health = 50
-max_health = 50
 combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResource("5_344ge"), ExtResource("6_ynf5e")])
 
 [node name="AI_Character" parent="." instance=ExtResource("2_bo1nx")]
-cur_health = 50
-max_health = 50
+cur_health = 15
+max_health = 15
 combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResource("5_344ge"), ExtResource("6_ynf5e")])
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -59,7 +57,16 @@ offset_right = 784.0
 offset_bottom = 188.0
 script = ExtResource("8_344ge")
 
+[node name="Text_Output" type="Label" parent="HUD"]
+offset_left = 412.0
+offset_top = 170.0
+offset_right = 683.0
+offset_bottom = 260.0
+theme_override_font_sizes/font_size = 24
+text = "test"
+
 [node name="Character Creator" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="CC_Title" type="Label" parent="Character Creator"]
 offset_left = 441.0
@@ -138,8 +145,51 @@ offset_right = 655.0
 offset_bottom = 520.0
 text = "Play Game"
 
+[node name="Level_Up_Screen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="LevelUpTitle" type="Label" parent="Level_Up_Screen"]
+offset_left = 427.0
+offset_top = 147.0
+offset_right = 695.0
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 30
+text = "You gained a level!"
+
+[node name="Label" type="Label" parent="Level_Up_Screen"]
+offset_left = 289.0
+offset_top = 269.0
+offset_right = 832.0
+offset_bottom = 338.0
+theme_override_font_sizes/font_size = 24
+text = "Choose an Ability Modifier to increase:"
+
+[node name="Finish_Level_Up" type="Button" parent="Level_Up_Screen"]
+offset_left = 472.0
+offset_top = 510.0
+offset_right = 688.0
+offset_bottom = 599.0
+theme_override_font_sizes/font_size = 24
+text = "Next Combat!"
+
+[node name="Stat_boost" type="OptionButton" parent="Level_Up_Screen"]
+offset_left = 290.0
+offset_top = 302.0
+offset_right = 439.0
+offset_bottom = 361.0
+item_count = 4
+popup/item_0/text = "Strength"
+popup/item_0/id = 0
+popup/item_1/text = "Dexterity"
+popup/item_1/id = 1
+popup/item_2/text = "Constitution"
+popup/item_2/id = 2
+popup/item_3/text = "Intelligence"
+popup/item_3/id = 3
+
 [connection signal="health_change" from="Player_Character" to="." method="_on_player_character_health_change"]
 [connection signal="health_depleted" from="Player_Character" to="." method="_on_player_character_health_depleted"]
+[connection signal="leveled_up" from="Player_Character" to="." method="_on_player_character_leveled_up"]
 [connection signal="health_change" from="AI_Character" to="." method="_on_ai_character_health_change"]
 [connection signal="health_depleted" from="AI_Character" to="." method="_on_ai_character_health_depleted"]
 [connection signal="pressed" from="HUD/Slash" to="." method="_on_slash_pressed"]
@@ -147,3 +197,6 @@ text = "Play Game"
 [connection signal="item_selected" from="Character Creator/Ancestry_Selection" to="Player_Character" method="_on_ancestry_selection_item_selected"]
 [connection signal="item_selected" from="Character Creator/Job_Selection" to="Player_Character" method="_on_job_selection_item_selected"]
 [connection signal="pressed" from="Character Creator/Start_Game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Level_Up_Screen/Finish_Level_Up" to="." method="_on_finish_level_up_pressed"]
+[connection signal="pressed" from="Level_Up_Screen/Finish_Level_Up" to="Player_Character" method="_on_finish_level_up_pressed"]
+[connection signal="item_selected" from="Level_Up_Screen/Stat_boost" to="Player_Character" method="_on_option_button_item_selected"]
