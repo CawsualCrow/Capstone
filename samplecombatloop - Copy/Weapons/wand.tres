@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://cj516o8idnckb"]
+
+[ext_resource type="Script" uid="uid://8cb0deylnmka" path="res://Scripts/weapon.gd" id="1_rd76f"]
+
+[resource]
+script = ExtResource("1_rd76f")
+weapon_name = "Wand"
+weapon_description = "Next to a tome, one of the wizard's most useful tools. "
+strength_boost = 0
+intelligence_bost = 1
+metadata/_custom_type_script = "uid://8cb0deylnmka"

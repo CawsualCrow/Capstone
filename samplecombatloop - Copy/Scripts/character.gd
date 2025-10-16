@@ -6,9 +6,10 @@ extends Node
 
 signal OnTakeDamage (health : int)
 signal OnHeal (health: int)
-signal health_change
-signal health_depleted
-signal leveled_up
+signal health_change # update hp change on hud
+signal health_depleted # hp drops to 0
+signal leveled_up # handles level up bonuses and hp calculation
+signal calc_armor_class # ac = 10 + dex (to armor cap) + armor value + proficiency?
 
 @export var is_player : bool
 
@@ -29,8 +30,10 @@ var job : int # 0 = fighter, 1 = rogue, 2 = mage
 @export var armor_class : int # determine if hit
 
 @export var combat_actions : Array[CombatAction]
+@export var player_weapon : Weapon 
 
 var target_scale : float = 1.0
+
 
 
 # var audio
@@ -73,13 +76,13 @@ func cast_combat_action (action : CombatAction, opponent : Character):
 	var dmg = randi_range(1, 8) # doubles as heal value
 	
 	if (action.heal_amount > 0):
-		action.heal_amount = (dmg + intelligence_bonus)
+		action.heal_amount = (dmg + intelligence_bonus + player_weapon.intelligence_bost)
 		heal(action.heal_amount)
-		print("Heal for %s points! (roll %s + %s)" % [str(action.heal_amount), str(dmg), str(intelligence_bonus)])
+		print("Heal for %s points! (rolled %s + (Int mod) %s + (Weapon bonus) %s)" % [str(action.heal_amount), str(dmg), str(intelligence_bonus), str(player_weapon.intelligence_bost)])
 	if (action.melee_damage > 0):
-		action.melee_damage = (dmg + strength_bonus)
+		action.melee_damage = (dmg + strength_bonus + player_weapon.strength_boost)
 		opponent.take_damage(action.melee_damage)
-		print("Take %s damage! (roll %s + %s)" % [str(action.melee_damage), str(dmg), str(strength_bonus)])
+		print("Take %s damage! (rolled %s + (Str mod) %s + (Weapon bonus) %s)" % [str(action.melee_damage), str(dmg), str(strength_bonus), str(player_weapon.strength_boost)])
 
 func _play_audio (steam : AudioStream):
 	pass
@@ -159,3 +162,7 @@ func _on_finish_level_up_pressed() -> void:
 			cur_health += (6 + constitution_bonus)
 			max_health += (6 + constitution_bonus)
 		leveled_up.emit()
+
+
+func equip_weapon(weapon : Weapon):
+	player_weapon = weapon

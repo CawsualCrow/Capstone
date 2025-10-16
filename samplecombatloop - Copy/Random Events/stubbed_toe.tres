@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RandomEvent" load_steps=3 format=3 uid="uid://bfyc58nhgb0mf"]
+
+[ext_resource type="Script" uid="uid://dhd4k0rt4h01b" path="res://Scripts/random_event.gd" id="1_egswc"]
+[ext_resource type="Resource" uid="uid://cq5c8aytvr4vs" path="res://Combat Actions/slash.tres" id="1_otkic"]
+
+[resource]
+script = ExtResource("1_egswc")
+event_name = "Stubbed Toe"
+description = "You aren't watching where you step and you stub your toe. It hurts. (take a small amount of damage)"
+type = "damage"
+event_effect = ExtResource("1_otkic")
+metadata/_custom_type_script = "uid://dhd4k0rt4h01b"

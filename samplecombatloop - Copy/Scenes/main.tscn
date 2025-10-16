@@ -1,13 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyq1816yjcpp8"]
+[gd_scene load_steps=16 format=3 uid="uid://dyq1816yjcpp8"]
 
 [ext_resource type="Script" uid="uid://c8ql6gc1c0fe2" path="res://Scripts/game_manager.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cegfgqsxxut3y" path="res://Scenes/character.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://ch5omilvi1hxd" path="res://Scripts/combat_action.gd" id="3_21xkr"]
 [ext_resource type="Resource" uid="uid://cq5c8aytvr4vs" path="res://Combat Actions/slash.tres" id="4_6bp64"]
 [ext_resource type="Resource" uid="uid://bqb0vmtqjgbdt" path="res://Combat Actions/heal.tres" id="5_344ge"]
+[ext_resource type="Resource" uid="uid://dfdef31q6pmvw" path="res://Random Events/healing_fountain.tres" id="5_d1ilt"]
+[ext_resource type="Resource" uid="uid://bfyc58nhgb0mf" path="res://Random Events/stubbed_toe.tres" id="6_6iyac"]
 [ext_resource type="Resource" uid="uid://c2qn7tnl0swhb" path="res://Combat Actions/heavy_hit.tres" id="6_ynf5e"]
 [ext_resource type="Script" uid="uid://ds2agsx3ftdc5" path="res://Scripts/hud.gd" id="7_6bp64"]
+[ext_resource type="Script" uid="uid://8cb0deylnmka" path="res://Scripts/weapon.gd" id="7_wsu2k"]
 [ext_resource type="Script" uid="uid://c0smg3an2ivkf" path="res://Scripts/health_label.gd" id="8_344ge"]
+[ext_resource type="Resource" uid="uid://d2q5chgtav6xl" path="res://Weapons/sword.tres" id="8_k12tt"]
+[ext_resource type="Resource" uid="uid://cj516o8idnckb" path="res://Weapons/wand.tres" id="9_h1bgf"]
+[ext_resource type="Script" uid="uid://dhd4k0rt4h01b" path="res://Scripts/random_event.gd" id="9_ynf5e"]
+[ext_resource type="Resource" uid="uid://bbrqvm358vk6x" path="res://Weapons/fist.tres" id="10_6iyac"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("player_character", "ai_character")]
 script = ExtResource("1_bo1nx")
@@ -15,15 +22,19 @@ player_character = NodePath("Player_Character")
 ai_character = NodePath("AI_Character")
 slash = ExtResource("4_6bp64")
 heal = ExtResource("5_344ge")
+random_events = Array[ExtResource("9_ynf5e")]([ExtResource("5_d1ilt"), ExtResource("6_6iyac")])
+weapon_list = Array[ExtResource("7_wsu2k")]([ExtResource("8_k12tt"), ExtResource("9_h1bgf")])
 
 [node name="Player_Character" parent="." instance=ExtResource("2_bo1nx")]
 is_player = true
 combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResource("5_344ge"), ExtResource("6_ynf5e")])
+player_weapon = ExtResource("10_6iyac")
 
 [node name="AI_Character" parent="." instance=ExtResource("2_bo1nx")]
 cur_health = 15
 max_health = 15
 combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResource("5_344ge"), ExtResource("6_ynf5e")])
+player_weapon = ExtResource("10_6iyac")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 visible = false
@@ -64,6 +75,13 @@ offset_right = 683.0
 offset_bottom = 260.0
 theme_override_font_sizes/font_size = 24
 text = "test"
+
+[node name="Button" type="Button" parent="HUD"]
+offset_left = 479.0
+offset_top = 411.0
+offset_right = 617.0
+offset_bottom = 493.0
+text = "Inventory"
 
 [node name="Character Creator" type="CanvasLayer" parent="."]
 visible = false
@@ -146,7 +164,6 @@ offset_bottom = 520.0
 text = "Play Game"
 
 [node name="Level_Up_Screen" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="LevelUpTitle" type="Label" parent="Level_Up_Screen"]
 offset_left = 427.0
@@ -187,6 +204,161 @@ popup/item_2/id = 2
 popup/item_3/text = "Intelligence"
 popup/item_3/id = 3
 
+[node name="Inventory_Button" type="Button" parent="Level_Up_Screen"]
+offset_left = 819.0
+offset_top = 519.0
+offset_right = 1015.0
+offset_bottom = 601.0
+theme_override_font_sizes/font_size = 24
+text = "Change Inventory"
+
+[node name="Inventory" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Inventory_Title" type="Label" parent="Inventory"]
+offset_left = 529.0
+offset_top = 57.0
+offset_right = 569.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 24
+text = "Inventory"
+
+[node name="Weapon_Title" type="Label" parent="Inventory"]
+offset_left = 62.0
+offset_top = 303.0
+offset_right = 102.0
+offset_bottom = 326.0
+text = "Weapon"
+
+[node name="Weapon_Selector" type="OptionButton" parent="Inventory"]
+offset_left = 49.0
+offset_top = 346.0
+offset_right = 181.0
+offset_bottom = 397.0
+item_count = 2
+popup/item_0/text = "Shortsword"
+popup/item_0/id = 0
+popup/item_1/text = "Wand"
+popup/item_1/id = 1
+
+[node name="Equip_Weapon" type="Button" parent="Inventory"]
+offset_left = 207.0
+offset_top = 355.0
+offset_right = 279.0
+offset_bottom = 409.0
+text = "Equip
+Weaoon"
+
+[node name="Armor_Title" type="Label" parent="Inventory"]
+visible = false
+offset_left = 380.0
+offset_top = 302.0
+offset_right = 430.0
+offset_bottom = 325.0
+text = "Armor"
+
+[node name="Armor_Selector" type="OptionButton" parent="Inventory"]
+visible = false
+offset_left = 379.0
+offset_top = 339.0
+offset_right = 506.0
+offset_bottom = 394.0
+
+[node name="Equip_Armor" type="Button" parent="Inventory"]
+visible = false
+offset_left = 538.0
+offset_top = 337.0
+offset_right = 596.0
+offset_bottom = 391.0
+text = "Equip
+Armor"
+
+[node name="Consumables_Title" type="Label" parent="Inventory"]
+visible = false
+offset_left = 706.0
+offset_top = 300.0
+offset_right = 811.0
+offset_bottom = 323.0
+text = "Consumables"
+
+[node name="Consumables_Selector" type="OptionButton" parent="Inventory"]
+visible = false
+offset_left = 706.0
+offset_top = 340.0
+offset_right = 852.0
+offset_bottom = 402.0
+
+[node name="Use_Item" type="Button" parent="Inventory"]
+visible = false
+offset_left = 932.0
+offset_top = 343.0
+offset_right = 1013.0
+offset_bottom = 397.0
+text = "Use
+Item"
+
+[node name="Game_Over" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Game_Over_Text" type="Label" parent="Game_Over"]
+anchors_preset = -1
+anchor_left = 0.253
+anchor_top = 0.145
+anchor_right = 0.753
+anchor_bottom = 0.557
+offset_left = -0.456024
+offset_top = -8.96001
+offset_right = -0.456055
+offset_bottom = 0.0639648
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "You feel a sharp pain as the creature attacks you. 
+Your weapon falls from your hand as the world
+spins and slows as your vision fades. Your 
+adventure ends here
+
+You have fallen in the dungeon.
+Try again?"
+visible_ratio = -0.00487805
+
+[node name="Start_Over" type="Button" parent="Game_Over"]
+offset_left = 288.0
+offset_top = 363.0
+offset_right = 534.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 16
+text = "Return to
+Character Select"
+
+[node name="Quit_to_menu" type="Button" parent="Game_Over"]
+offset_left = 618.0
+offset_top = 361.0
+offset_right = 866.0
+offset_bottom = 441.0
+theme_override_font_sizes/font_size = 16
+text = "Exit to
+Menu"
+
+[node name="Event_HUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Event_Description" type="Label" parent="Event_HUD"]
+offset_left = 327.0
+offset_top = 85.0
+offset_right = 830.0
+offset_bottom = 325.0
+text = "Filler Description"
+
+[node name="Continue__To_Combat" type="Button" parent="Event_HUD"]
+offset_left = 436.0
+offset_top = 440.0
+offset_right = 739.0
+offset_bottom = 508.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+
 [connection signal="health_change" from="Player_Character" to="." method="_on_player_character_health_change"]
 [connection signal="health_depleted" from="Player_Character" to="." method="_on_player_character_health_depleted"]
 [connection signal="leveled_up" from="Player_Character" to="." method="_on_player_character_leveled_up"]
@@ -200,3 +372,7 @@ popup/item_3/id = 3
 [connection signal="pressed" from="Level_Up_Screen/Finish_Level_Up" to="." method="_on_finish_level_up_pressed"]
 [connection signal="pressed" from="Level_Up_Screen/Finish_Level_Up" to="Player_Character" method="_on_finish_level_up_pressed"]
 [connection signal="item_selected" from="Level_Up_Screen/Stat_boost" to="Player_Character" method="_on_option_button_item_selected"]
+[connection signal="pressed" from="Level_Up_Screen/Inventory_Button" to="." method="_on_inventory_button_pressed"]
+[connection signal="item_selected" from="Inventory/Weapon_Selector" to="." method="_on_weapon_selector_item_selected"]
+[connection signal="pressed" from="Inventory/Equip_Weapon" to="." method="_on_equip_weapon_pressed"]
+[connection signal="pressed" from="Event_HUD/Continue__To_Combat" to="." method="_on_continue__to_combat_pressed"]

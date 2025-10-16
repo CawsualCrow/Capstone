@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://d2q5chgtav6xl"]
+
+[ext_resource type="Script" uid="uid://8cb0deylnmka" path="res://Scripts/weapon.gd" id="1_4buht"]
+
+[resource]
+script = ExtResource("1_4buht")
+weapon_name = "Shortsword"
+weapon_description = "A typical blade among adventurers"
+strength_boost = 1
+intelligence_bost = 0
+metadata/_custom_type_script = "uid://8cb0deylnmka"

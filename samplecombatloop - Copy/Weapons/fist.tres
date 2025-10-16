@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://bbrqvm358vk6x"]
+
+[ext_resource type="Script" uid="uid://8cb0deylnmka" path="res://Scripts/weapon.gd" id="1_cghyh"]
+
+[resource]
+script = ExtResource("1_cghyh")
+weapon_name = "Fist"
+weapon_description = "You ARE a weapon"
+strength_boost = 0
+intelligence_bost = 0
+metadata/_custom_type_script = "uid://8cb0deylnmka"
