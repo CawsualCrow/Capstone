@@ -187,3 +187,43 @@ func _on_weapon_selector_item_selected(index: int) -> void:
 func _on_inventory_button_pressed() -> void:
 	$Level_Up_Screen.hide()
 	$Inventory.show()
+
+
+func _on_north_pressed() -> void:
+	var outcome = $Map._move(0,-1)
+	if(outcome == -1):
+		print("Cannot move")
+	if(outcome == 0):
+		print("Event Triggered (new room)")
+	if(outcome == 1):
+		print("Room already visited (no event)")
+
+
+func _on_west_pressed() -> void:
+	var outcome = $Map._move(-1,0)
+	if(outcome == -1):
+		print("Cannot move")
+	if(outcome == 0):
+		print("Event Triggered (new room)")
+	if(outcome == 1):
+		print("Room already visited (no event)")
+
+
+func _on_south_pressed() -> void:
+	var outcome = $Map._move(0,1)
+	if(outcome == -1):
+		print("Cannot move")
+	if(outcome == 0):
+		print("Event Triggered (new room)")
+	if(outcome == 1):
+		print("Room already visited (no event)")
+
+
+func _on_east_pressed() -> void:
+	var outcome = $Map._move(1,0)
+	if(outcome == -1):
+		print("Cannot move")
+	if(outcome == 0):
+		print("Event Triggered (new room)")
+	if(outcome == 1):
+		print("Room already visited (no event)")

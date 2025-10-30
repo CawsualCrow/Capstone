@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dyq1816yjcpp8"]
+[gd_scene load_steps=19 format=3 uid="uid://dyq1816yjcpp8"]
 
 [ext_resource type="Script" uid="uid://c8ql6gc1c0fe2" path="res://Scripts/game_manager.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cegfgqsxxut3y" path="res://Scenes/character.tscn" id="2_bo1nx"]
@@ -15,6 +15,9 @@
 [ext_resource type="Resource" uid="uid://cj516o8idnckb" path="res://Weapons/wand.tres" id="9_h1bgf"]
 [ext_resource type="Script" uid="uid://dhd4k0rt4h01b" path="res://Scripts/random_event.gd" id="9_ynf5e"]
 [ext_resource type="Resource" uid="uid://bbrqvm358vk6x" path="res://Weapons/fist.tres" id="10_6iyac"]
+[ext_resource type="Script" uid="uid://c5krxgxnqu5ie" path="res://Scenes/map.gd" id="16_b3802"]
+[ext_resource type="Texture2D" uid="uid://covhv3435ryod" path="res://Textures/Maps/2x2 Map.png" id="16_k12tt"]
+[ext_resource type="Texture2D" uid="uid://d18dqedta6xcs" path="res://Textures/Maps/Unexplored room.png" id="17_h1bgf"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("player_character", "ai_character")]
 script = ExtResource("1_bo1nx")
@@ -164,6 +167,7 @@ offset_bottom = 520.0
 text = "Play Game"
 
 [node name="Level_Up_Screen" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="LevelUpTitle" type="Label" parent="Level_Up_Screen"]
 offset_left = 427.0
@@ -319,7 +323,8 @@ adventure ends here
 
 You have fallen in the dungeon.
 Try again?"
-visible_ratio = -0.00487805
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="Start_Over" type="Button" parent="Game_Over"]
 offset_left = 288.0
@@ -359,6 +364,101 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 24
 text = "Continue"
 
+[node name="Navigation" type="CanvasLayer" parent="."]
+
+[node name="North" type="Button" parent="Navigation"]
+offset_left = 266.0
+offset_top = 420.0
+offset_right = 464.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 24
+text = "North"
+
+[node name="West" type="Button" parent="Navigation"]
+offset_left = 42.0
+offset_top = 531.0
+offset_right = 240.0
+offset_bottom = 613.0
+theme_override_font_sizes/font_size = 24
+text = "West"
+
+[node name="South" type="Button" parent="Navigation"]
+offset_left = 265.0
+offset_top = 532.0
+offset_right = 463.0
+offset_bottom = 614.0
+theme_override_font_sizes/font_size = 24
+text = "South"
+
+[node name="East" type="Button" parent="Navigation"]
+offset_left = 494.0
+offset_top = 534.0
+offset_right = 692.0
+offset_bottom = 616.0
+theme_override_font_sizes/font_size = 24
+text = "East"
+
+[node name="Button5" type="Button" parent="Navigation"]
+offset_left = 44.0
+offset_top = 419.0
+offset_right = 242.0
+offset_bottom = 501.0
+text = "[assign later]"
+
+[node name="Button6" type="Button" parent="Navigation"]
+offset_left = 498.0
+offset_top = 419.0
+offset_right = 696.0
+offset_bottom = 501.0
+text = "[assign later]"
+
+[node name="Output" type="Label" parent="Navigation"]
+offset_left = 45.0
+offset_top = 32.0
+offset_right = 694.0
+offset_bottom = 396.0
+
+[node name="PlayerInfo" type="Label" parent="Navigation"]
+offset_left = 721.0
+offset_top = 419.0
+offset_right = 1108.0
+offset_bottom = 618.0
+
+[node name="Map" type="CanvasLayer" parent="."]
+script = ExtResource("16_b3802")
+
+[node name="2x2Map" type="TextureRect" parent="Map"]
+offset_left = 712.0
+offset_top = 36.0
+offset_right = 1112.0
+offset_bottom = 396.0
+texture = ExtResource("16_k12tt")
+
+[node name="Mask" type="TextureRect" parent="Map/2x2Map"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 180.0
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask2" type="TextureRect" parent="Map/2x2Map"]
+offset_top = 180.0
+offset_right = 200.0
+offset_bottom = 360.0
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask3" type="TextureRect" parent="Map/2x2Map"]
+offset_left = 200.0
+offset_right = 400.0
+offset_bottom = 180.0
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask4" type="TextureRect" parent="Map/2x2Map"]
+offset_left = 200.0
+offset_top = 180.0
+offset_right = 400.0
+offset_bottom = 360.0
+texture = ExtResource("17_h1bgf")
+
 [connection signal="health_change" from="Player_Character" to="." method="_on_player_character_health_change"]
 [connection signal="health_depleted" from="Player_Character" to="." method="_on_player_character_health_depleted"]
 [connection signal="leveled_up" from="Player_Character" to="." method="_on_player_character_leveled_up"]
@@ -376,3 +476,7 @@ text = "Continue"
 [connection signal="item_selected" from="Inventory/Weapon_Selector" to="." method="_on_weapon_selector_item_selected"]
 [connection signal="pressed" from="Inventory/Equip_Weapon" to="." method="_on_equip_weapon_pressed"]
 [connection signal="pressed" from="Event_HUD/Continue__To_Combat" to="." method="_on_continue__to_combat_pressed"]
+[connection signal="pressed" from="Navigation/North" to="." method="_on_north_pressed"]
+[connection signal="pressed" from="Navigation/West" to="." method="_on_west_pressed"]
+[connection signal="pressed" from="Navigation/South" to="." method="_on_south_pressed"]
+[connection signal="pressed" from="Navigation/East" to="." method="_on_east_pressed"]
