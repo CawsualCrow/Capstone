@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dyq1816yjcpp8"]
+[gd_scene load_steps=20 format=3 uid="uid://dyq1816yjcpp8"]
 
 [ext_resource type="Script" uid="uid://c8ql6gc1c0fe2" path="res://Scripts/game_manager.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cegfgqsxxut3y" path="res://Scenes/character.tscn" id="2_bo1nx"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://c5krxgxnqu5ie" path="res://Scenes/map.gd" id="16_b3802"]
 [ext_resource type="Texture2D" uid="uid://covhv3435ryod" path="res://Textures/Maps/2x2 Map.png" id="16_k12tt"]
 [ext_resource type="Texture2D" uid="uid://d18dqedta6xcs" path="res://Textures/Maps/Unexplored room.png" id="17_h1bgf"]
+[ext_resource type="Texture2D" uid="uid://xey8hvrtngop" path="res://icon.svg" id="19_fevyy"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("player_character", "ai_character")]
 script = ExtResource("1_bo1nx")
@@ -441,23 +442,43 @@ offset_bottom = 180.0
 texture = ExtResource("17_h1bgf")
 
 [node name="Mask2" type="TextureRect" parent="Map/2x2Map"]
+layout_mode = 0
 offset_top = 180.0
 offset_right = 200.0
 offset_bottom = 360.0
 texture = ExtResource("17_h1bgf")
 
 [node name="Mask3" type="TextureRect" parent="Map/2x2Map"]
+layout_mode = 0
 offset_left = 200.0
 offset_right = 400.0
 offset_bottom = 180.0
 texture = ExtResource("17_h1bgf")
 
 [node name="Mask4" type="TextureRect" parent="Map/2x2Map"]
+visible = false
+layout_mode = 0
 offset_left = 200.0
 offset_top = 180.0
 offset_right = 400.0
 offset_bottom = 360.0
 texture = ExtResource("17_h1bgf")
+
+[node name="PL_0_0" type="Sprite2D" parent="Map"]
+position = Vector2(809, 123)
+texture = ExtResource("19_fevyy")
+
+[node name="PL_0_1" type="Sprite2D" parent="Map"]
+position = Vector2(1010, 122)
+texture = ExtResource("19_fevyy")
+
+[node name="PL_1_0" type="Sprite2D" parent="Map"]
+position = Vector2(807, 306)
+texture = ExtResource("19_fevyy")
+
+[node name="PL_1_1" type="Sprite2D" parent="Map"]
+position = Vector2(1007, 311)
+texture = ExtResource("19_fevyy")
 
 [connection signal="health_change" from="Player_Character" to="." method="_on_player_character_health_change"]
 [connection signal="health_depleted" from="Player_Character" to="." method="_on_player_character_health_depleted"]
