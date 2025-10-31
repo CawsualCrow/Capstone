@@ -63,6 +63,7 @@ offset_left = 304.0
 offset_top = 174.0
 offset_right = 344.0
 offset_bottom = 197.0
+autowrap_mode = 2
 script = ExtResource("8_344ge")
 
 [node name="AI_Health" type="Label" parent="HUD"]
@@ -70,6 +71,7 @@ offset_left = 744.0
 offset_top = 165.0
 offset_right = 784.0
 offset_bottom = 188.0
+autowrap_mode = 2
 script = ExtResource("8_344ge")
 
 [node name="Text_Output" type="Label" parent="HUD"]
@@ -79,6 +81,7 @@ offset_right = 683.0
 offset_bottom = 260.0
 theme_override_font_sizes/font_size = 24
 text = "test"
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="HUD"]
 offset_left = 479.0
@@ -96,6 +99,7 @@ offset_top = 135.0
 offset_right = 481.0
 offset_bottom = 158.0
 text = "Create your hero!"
+autowrap_mode = 2
 
 [node name="Ancestry_Title" type="Label" parent="Character Creator"]
 offset_left = 94.0
@@ -104,6 +108,7 @@ offset_right = 162.0
 offset_bottom = 248.0
 theme_override_font_sizes/font_size = 24
 text = "Ancestry"
+autowrap_mode = 2
 
 [node name="Job_Title" type="Label" parent="Character Creator"]
 offset_left = 531.0
@@ -112,6 +117,7 @@ offset_right = 571.0
 offset_bottom = 241.0
 theme_override_font_sizes/font_size = 24
 text = "Job"
+autowrap_mode = 2
 
 [node name="Boost_Title" type="Label" parent="Character Creator"]
 offset_left = 865.0
@@ -119,6 +125,7 @@ offset_top = 234.0
 offset_right = 1107.0
 offset_bottom = 257.0
 text = "Free Boosts (pick 4) - (later build)"
+autowrap_mode = 2
 
 [node name="Ancestry_Selection" type="OptionButton" parent="Character Creator"]
 offset_left = 49.0
@@ -152,6 +159,7 @@ offset_top = 341.0
 offset_right = 251.0
 offset_bottom = 370.0
 text = "sample text about ancestry"
+autowrap_mode = 2
 
 [node name="Job_Description" type="Label" parent="Character Creator"]
 offset_left = 460.0
@@ -159,6 +167,7 @@ offset_top = 348.0
 offset_right = 629.0
 offset_bottom = 390.0
 text = "sample text about job"
+autowrap_mode = 2
 
 [node name="Start_Game" type="Button" parent="Character Creator"]
 offset_left = 449.0
@@ -177,6 +186,7 @@ offset_right = 695.0
 offset_bottom = 189.0
 theme_override_font_sizes/font_size = 30
 text = "You gained a level!"
+autowrap_mode = 2
 
 [node name="Label" type="Label" parent="Level_Up_Screen"]
 offset_left = 289.0
@@ -185,6 +195,7 @@ offset_right = 832.0
 offset_bottom = 338.0
 theme_override_font_sizes/font_size = 24
 text = "Choose an Ability Modifier to increase:"
+autowrap_mode = 2
 
 [node name="Finish_Level_Up" type="Button" parent="Level_Up_Screen"]
 offset_left = 472.0
@@ -192,7 +203,7 @@ offset_top = 510.0
 offset_right = 688.0
 offset_bottom = 599.0
 theme_override_font_sizes/font_size = 24
-text = "Next Combat!"
+text = "Continue"
 
 [node name="Stat_boost" type="OptionButton" parent="Level_Up_Screen"]
 offset_left = 290.0
@@ -227,6 +238,7 @@ offset_right = 569.0
 offset_bottom = 80.0
 theme_override_font_sizes/font_size = 24
 text = "Inventory"
+autowrap_mode = 2
 
 [node name="Weapon_Title" type="Label" parent="Inventory"]
 offset_left = 62.0
@@ -234,6 +246,7 @@ offset_top = 303.0
 offset_right = 102.0
 offset_bottom = 326.0
 text = "Weapon"
+autowrap_mode = 2
 
 [node name="Weapon_Selector" type="OptionButton" parent="Inventory"]
 offset_left = 49.0
@@ -261,6 +274,7 @@ offset_top = 302.0
 offset_right = 430.0
 offset_bottom = 325.0
 text = "Armor"
+autowrap_mode = 2
 
 [node name="Armor_Selector" type="OptionButton" parent="Inventory"]
 visible = false
@@ -285,6 +299,7 @@ offset_top = 300.0
 offset_right = 811.0
 offset_bottom = 323.0
 text = "Consumables"
+autowrap_mode = 2
 
 [node name="Consumables_Selector" type="OptionButton" parent="Inventory"]
 visible = false
@@ -324,6 +339,7 @@ adventure ends here
 
 You have fallen in the dungeon.
 Try again?"
+autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -354,6 +370,7 @@ offset_top = 85.0
 offset_right = 830.0
 offset_bottom = 325.0
 text = "Filler Description"
+autowrap_mode = 2
 
 [node name="Continue__To_Combat" type="Button" parent="Event_HUD"]
 offset_left = 436.0
@@ -413,17 +430,28 @@ offset_right = 696.0
 offset_bottom = 501.0
 text = "[assign later]"
 
-[node name="Output" type="Label" parent="Navigation"]
-offset_left = 45.0
-offset_top = 32.0
-offset_right = 694.0
-offset_bottom = 396.0
-
 [node name="PlayerInfo" type="Label" parent="Navigation"]
 offset_left = 721.0
 offset_top = 419.0
 offset_right = 1108.0
 offset_bottom = 618.0
+autowrap_mode = 2
+
+[node name="Output" type="PanelContainer" parent="Navigation"]
+offset_left = 43.0
+offset_top = 32.0
+offset_right = 692.0
+offset_bottom = 393.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Navigation/Output"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VScrollBar" type="VScrollBar" parent="Navigation/Output/ScrollContainer"]
+layout_mode = 2
+
+[node name="History" type="VBoxContainer" parent="Navigation/Output/ScrollContainer"]
+layout_mode = 2
 
 [node name="Map" type="CanvasLayer" parent="."]
 script = ExtResource("16_b3802")

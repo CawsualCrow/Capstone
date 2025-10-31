@@ -33,6 +33,8 @@ func _ready():
 	$Game_Over.hide()
 	$Event_HUD.hide()
 	$Inventory.hide()
+	$Navigation.hide()
+	$Map.hide()
 
 
 func next_turn ():
@@ -102,16 +104,20 @@ func _on_heal_pressed() -> void:
 	player_cast_combat_action(heal)
 
 
-func _on_start_game_pressed() -> void:
+func _on_start_game_pressed() -> void: # change to go to navigation
 	# save player character stats and start combat
 	# $Player_Character set bonuses
 	# add refusal to start if character options not selected.
 	$"Character Creator".hide()
-	$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
-	$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
-	$HUD.show()
-	next_turn()
+	$"Navigation".show()
+	$"Map".show()
+	
+	#$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
+	#$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
+	#$HUD.show()
+	#next_turn()
 
+# add func to move from navigation to combat/event
 
 func _on_player_character_health_change():
 	$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
