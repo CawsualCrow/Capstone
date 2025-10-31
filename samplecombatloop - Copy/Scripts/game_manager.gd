@@ -33,6 +33,8 @@ func _ready():
 	$Game_Over.hide()
 	$Event_HUD.hide()
 	$Inventory.hide()
+	$Navigation.hide()
+	$Map.hide()
 
 
 func next_turn ():
