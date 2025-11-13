@@ -45,17 +45,19 @@ visible = false
 script = ExtResource("7_6bp64")
 
 [node name="Slash" type="Button" parent="HUD"]
-offset_left = 293.0
-offset_top = 409.0
-offset_right = 393.0
-offset_bottom = 486.0
+offset_left = 228.0
+offset_top = 414.0
+offset_right = 400.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 32
 text = "Slash"
 
 [node name="Heal" type="Button" parent="HUD"]
 offset_left = 702.0
-offset_top = 415.0
-offset_right = 822.0
+offset_top = 409.0
+offset_right = 888.0
 offset_bottom = 497.0
+theme_override_font_sizes/font_size = 32
 text = "Heal"
 
 [node name="Player_Health" type="Label" parent="HUD"]
@@ -63,6 +65,7 @@ offset_left = 304.0
 offset_top = 174.0
 offset_right = 344.0
 offset_bottom = 197.0
+theme_override_font_sizes/font_size = 32
 script = ExtResource("8_344ge")
 
 [node name="AI_Health" type="Label" parent="HUD"]
@@ -70,6 +73,7 @@ offset_left = 744.0
 offset_top = 165.0
 offset_right = 784.0
 offset_bottom = 188.0
+theme_override_font_sizes/font_size = 32
 script = ExtResource("8_344ge")
 
 [node name="Text_Output" type="Label" parent="HUD"]
@@ -77,14 +81,15 @@ offset_left = 412.0
 offset_top = 170.0
 offset_right = 683.0
 offset_bottom = 260.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "test"
 
-[node name="Button" type="Button" parent="HUD"]
-offset_left = 479.0
+[node name="Inventory" type="Button" parent="HUD"]
+offset_left = 458.0
 offset_top = 411.0
-offset_right = 617.0
+offset_right = 636.0
 offset_bottom = 493.0
+theme_override_font_sizes/font_size = 32
 text = "Inventory"
 
 [node name="Character Creator" type="CanvasLayer" parent="."]
@@ -95,6 +100,7 @@ offset_left = 441.0
 offset_top = 135.0
 offset_right = 481.0
 offset_bottom = 158.0
+theme_override_font_sizes/font_size = 32
 text = "Create your hero!"
 
 [node name="Ancestry_Title" type="Label" parent="Character Creator"]
@@ -102,7 +108,7 @@ offset_left = 94.0
 offset_top = 225.0
 offset_right = 162.0
 offset_bottom = 248.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Ancestry"
 
 [node name="Job_Title" type="Label" parent="Character Creator"]
@@ -110,21 +116,24 @@ offset_left = 531.0
 offset_top = 218.0
 offset_right = 571.0
 offset_bottom = 241.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Job"
 
 [node name="Boost_Title" type="Label" parent="Character Creator"]
-offset_left = 865.0
-offset_top = 234.0
-offset_right = 1107.0
-offset_bottom = 257.0
-text = "Free Boosts (pick 4) - (later build)"
+offset_left = 777.0
+offset_top = 232.0
+offset_right = 1102.0
+offset_bottom = 325.0
+theme_override_font_sizes/font_size = 32
+text = "Free Boosts (pick 4)
+(later build)"
 
 [node name="Ancestry_Selection" type="OptionButton" parent="Character Creator"]
 offset_left = 49.0
 offset_top = 282.0
 offset_right = 209.0
 offset_bottom = 302.0
+theme_override_font_sizes/font_size = 24
 item_count = 3
 popup/item_0/text = "Human"
 popup/item_0/id = 0
@@ -138,6 +147,7 @@ offset_left = 479.0
 offset_top = 282.0
 offset_right = 611.0
 offset_bottom = 302.0
+theme_override_font_sizes/font_size = 24
 item_count = 3
 popup/item_0/text = "Fighter"
 popup/item_0/id = 0
@@ -151,6 +161,7 @@ offset_left = 40.0
 offset_top = 341.0
 offset_right = 251.0
 offset_bottom = 370.0
+theme_override_font_sizes/font_size = 24
 text = "sample text about ancestry"
 
 [node name="Job_Description" type="Label" parent="Character Creator"]
@@ -158,6 +169,7 @@ offset_left = 460.0
 offset_top = 348.0
 offset_right = 629.0
 offset_bottom = 390.0
+theme_override_font_sizes/font_size = 24
 text = "sample text about job"
 
 [node name="Start_Game" type="Button" parent="Character Creator"]
@@ -165,6 +177,7 @@ offset_left = 449.0
 offset_top = 413.0
 offset_right = 655.0
 offset_bottom = 520.0
+theme_override_font_sizes/font_size = 32
 text = "Play Game"
 
 [node name="Level_Up_Screen" type="CanvasLayer" parent="."]
@@ -175,15 +188,15 @@ offset_left = 427.0
 offset_top = 147.0
 offset_right = 695.0
 offset_bottom = 189.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 32
 text = "You gained a level!"
 
 [node name="Label" type="Label" parent="Level_Up_Screen"]
-offset_left = 289.0
-offset_top = 269.0
-offset_right = 832.0
-offset_bottom = 338.0
-theme_override_font_sizes/font_size = 24
+offset_left = 288.0
+offset_top = 238.0
+offset_right = 881.0
+offset_bottom = 307.0
+theme_override_font_sizes/font_size = 32
 text = "Choose an Ability Modifier to increase:"
 
 [node name="Finish_Level_Up" type="Button" parent="Level_Up_Screen"]
@@ -191,7 +204,7 @@ offset_left = 472.0
 offset_top = 510.0
 offset_right = 688.0
 offset_bottom = 599.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Next Combat!"
 
 [node name="Stat_boost" type="OptionButton" parent="Level_Up_Screen"]
@@ -199,6 +212,7 @@ offset_left = 290.0
 offset_top = 302.0
 offset_right = 439.0
 offset_bottom = 361.0
+theme_override_font_sizes/font_size = 32
 item_count = 4
 popup/item_0/text = "Strength"
 popup/item_0/id = 0
@@ -214,7 +228,7 @@ offset_left = 819.0
 offset_top = 519.0
 offset_right = 1015.0
 offset_bottom = 601.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Change Inventory"
 
 [node name="Inventory" type="CanvasLayer" parent="."]
@@ -225,7 +239,7 @@ offset_left = 529.0
 offset_top = 57.0
 offset_right = 569.0
 offset_bottom = 80.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Inventory"
 
 [node name="Weapon_Title" type="Label" parent="Inventory"]
@@ -233,13 +247,15 @@ offset_left = 62.0
 offset_top = 303.0
 offset_right = 102.0
 offset_bottom = 326.0
+theme_override_font_sizes/font_size = 32
 text = "Weapon"
 
 [node name="Weapon_Selector" type="OptionButton" parent="Inventory"]
-offset_left = 49.0
-offset_top = 346.0
-offset_right = 181.0
-offset_bottom = 397.0
+offset_left = 55.0
+offset_top = 364.0
+offset_right = 187.0
+offset_bottom = 415.0
+theme_override_font_sizes/font_size = 32
 item_count = 2
 popup/item_0/text = "Shortsword"
 popup/item_0/id = 0
@@ -247,58 +263,59 @@ popup/item_1/text = "Wand"
 popup/item_1/id = 1
 
 [node name="Equip_Weapon" type="Button" parent="Inventory"]
-offset_left = 207.0
-offset_top = 355.0
-offset_right = 279.0
-offset_bottom = 409.0
+offset_left = 61.0
+offset_top = 438.0
+offset_right = 212.0
+offset_bottom = 529.0
+theme_override_font_sizes/font_size = 32
 text = "Equip
-Weaoon"
+Weapon"
 
 [node name="Armor_Title" type="Label" parent="Inventory"]
-visible = false
 offset_left = 380.0
 offset_top = 302.0
 offset_right = 430.0
 offset_bottom = 325.0
+theme_override_font_sizes/font_size = 32
 text = "Armor"
 
 [node name="Armor_Selector" type="OptionButton" parent="Inventory"]
-visible = false
-offset_left = 379.0
-offset_top = 339.0
-offset_right = 506.0
-offset_bottom = 394.0
+offset_left = 377.0
+offset_top = 358.0
+offset_right = 504.0
+offset_bottom = 413.0
+theme_override_font_sizes/font_size = 32
 
 [node name="Equip_Armor" type="Button" parent="Inventory"]
-visible = false
-offset_left = 538.0
-offset_top = 337.0
-offset_right = 596.0
-offset_bottom = 391.0
+offset_left = 380.0
+offset_top = 438.0
+offset_right = 487.0
+offset_bottom = 536.0
+theme_override_font_sizes/font_size = 32
 text = "Equip
 Armor"
 
 [node name="Consumables_Title" type="Label" parent="Inventory"]
-visible = false
-offset_left = 706.0
-offset_top = 300.0
-offset_right = 811.0
-offset_bottom = 323.0
+offset_left = 686.0
+offset_top = 314.0
+offset_right = 894.0
+offset_bottom = 359.0
+theme_override_font_sizes/font_size = 32
 text = "Consumables"
 
 [node name="Consumables_Selector" type="OptionButton" parent="Inventory"]
-visible = false
-offset_left = 706.0
-offset_top = 340.0
-offset_right = 852.0
-offset_bottom = 402.0
+offset_left = 694.0
+offset_top = 367.0
+offset_right = 840.0
+offset_bottom = 429.0
+theme_override_font_sizes/font_size = 32
 
 [node name="Use_Item" type="Button" parent="Inventory"]
-visible = false
-offset_left = 932.0
-offset_top = 343.0
-offset_right = 1013.0
-offset_bottom = 397.0
+offset_left = 692.0
+offset_top = 446.0
+offset_right = 841.0
+offset_bottom = 544.0
+theme_override_font_sizes/font_size = 32
 text = "Use
 Item"
 
@@ -311,12 +328,12 @@ anchor_left = 0.253
 anchor_top = 0.145
 anchor_right = 0.753
 anchor_bottom = 0.557
-offset_left = -0.456024
-offset_top = -8.96001
-offset_right = -0.456055
-offset_bottom = 0.0639648
+offset_left = -60.456
+offset_top = -26.96
+offset_right = 132.544
+offset_bottom = 39.064
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "You feel a sharp pain as the creature attacks you. 
 Your weapon falls from your hand as the world
 spins and slows as your vision fades. Your 
@@ -324,24 +341,23 @@ adventure ends here
 
 You have fallen in the dungeon.
 Try again?"
-visible_characters = 0
-visible_ratio = 0.0
+visible_ratio = -0.00487805
 
 [node name="Start_Over" type="Button" parent="Game_Over"]
-offset_left = 288.0
-offset_top = 363.0
-offset_right = 534.0
-offset_bottom = 444.0
-theme_override_font_sizes/font_size = 16
+offset_left = 240.0
+offset_top = 477.0
+offset_right = 486.0
+offset_bottom = 558.0
+theme_override_font_sizes/font_size = 32
 text = "Return to
 Character Select"
 
 [node name="Quit_to_menu" type="Button" parent="Game_Over"]
-offset_left = 618.0
-offset_top = 361.0
-offset_right = 866.0
-offset_bottom = 441.0
-theme_override_font_sizes/font_size = 16
+offset_left = 637.0
+offset_top = 477.0
+offset_right = 885.0
+offset_bottom = 557.0
+theme_override_font_sizes/font_size = 32
 text = "Exit to
 Menu"
 
@@ -353,6 +369,7 @@ offset_left = 327.0
 offset_top = 85.0
 offset_right = 830.0
 offset_bottom = 325.0
+theme_override_font_sizes/font_size = 32
 text = "Filler Description"
 
 [node name="Continue__To_Combat" type="Button" parent="Event_HUD"]
@@ -362,17 +379,18 @@ offset_right = 739.0
 offset_bottom = 508.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Continue"
 
 [node name="Navigation" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="North" type="Button" parent="Navigation"]
 offset_left = 266.0
 offset_top = 420.0
 offset_right = 464.0
 offset_bottom = 502.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "North"
 
 [node name="West" type="Button" parent="Navigation"]
@@ -380,7 +398,7 @@ offset_left = 42.0
 offset_top = 531.0
 offset_right = 240.0
 offset_bottom = 613.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "West"
 
 [node name="South" type="Button" parent="Navigation"]
@@ -388,7 +406,7 @@ offset_left = 265.0
 offset_top = 532.0
 offset_right = 463.0
 offset_bottom = 614.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "South"
 
 [node name="East" type="Button" parent="Navigation"]
@@ -396,7 +414,7 @@ offset_left = 494.0
 offset_top = 534.0
 offset_right = 692.0
 offset_bottom = 616.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "East"
 
 [node name="Button5" type="Button" parent="Navigation"]
@@ -404,6 +422,7 @@ offset_left = 44.0
 offset_top = 419.0
 offset_right = 242.0
 offset_bottom = 501.0
+theme_override_font_sizes/font_size = 32
 text = "[assign later]"
 
 [node name="Button6" type="Button" parent="Navigation"]
@@ -411,6 +430,7 @@ offset_left = 498.0
 offset_top = 419.0
 offset_right = 696.0
 offset_bottom = 501.0
+theme_override_font_sizes/font_size = 32
 text = "[assign later]"
 
 [node name="Output" type="Label" parent="Navigation"]
@@ -418,14 +438,21 @@ offset_left = 45.0
 offset_top = 32.0
 offset_right = 694.0
 offset_bottom = 396.0
+theme_override_font_sizes/font_size = 32
+text = "Sample Text: Room Description Here"
+autowrap_mode = 2
 
 [node name="PlayerInfo" type="Label" parent="Navigation"]
 offset_left = 721.0
 offset_top = 419.0
-offset_right = 1108.0
+offset_right = 1132.0
 offset_bottom = 618.0
+theme_override_font_sizes/font_size = 32
+text = "Sample Text: Player Info Here"
+autowrap_mode = 2
 
 [node name="Map" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("16_b3802")
 
 [node name="2x2Map" type="TextureRect" parent="Map"]
