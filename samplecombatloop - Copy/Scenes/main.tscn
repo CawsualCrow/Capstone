@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://dhd4k0rt4h01b" path="res://Scripts/random_event.gd" id="9_ynf5e"]
 [ext_resource type="Resource" uid="uid://bbrqvm358vk6x" path="res://Weapons/fist.tres" id="10_6iyac"]
 [ext_resource type="Script" uid="uid://c5krxgxnqu5ie" path="res://Scenes/map.gd" id="16_b3802"]
-[ext_resource type="Texture2D" uid="uid://covhv3435ryod" path="res://Textures/Maps/2x2 Map.png" id="16_k12tt"]
+[ext_resource type="Texture2D" uid="uid://25cwkiawhkrg" path="res://Textures/Maps/4x4 w doors.png" id="17_fevyy"]
 [ext_resource type="Texture2D" uid="uid://d18dqedta6xcs" path="res://Textures/Maps/Unexplored room.png" id="17_h1bgf"]
 [ext_resource type="Texture2D" uid="uid://xey8hvrtngop" path="res://icon.svg" id="19_fevyy"]
 
@@ -93,7 +93,6 @@ theme_override_font_sizes/font_size = 32
 text = "Inventory"
 
 [node name="Character Creator" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="CC_Title" type="Label" parent="Character Creator"]
 offset_left = 441.0
@@ -341,7 +340,8 @@ adventure ends here
 
 You have fallen in the dungeon.
 Try again?"
-visible_ratio = -0.00487805
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="Start_Over" type="Button" parent="Game_Over"]
 offset_left = 240.0
@@ -455,56 +455,96 @@ autowrap_mode = 2
 visible = false
 script = ExtResource("16_b3802")
 
-[node name="2x2Map" type="TextureRect" parent="Map"]
+[node name="4x4Map" type="TextureRect" parent="Map"]
 offset_left = 712.0
 offset_top = 36.0
 offset_right = 1112.0
 offset_bottom = 396.0
-texture = ExtResource("16_k12tt")
+texture = ExtResource("17_fevyy")
 
-[node name="Mask" type="TextureRect" parent="Map/2x2Map"]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 180.0
+[node name="Mask1" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(50, 45)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("17_h1bgf")
 
-[node name="Mask2" type="TextureRect" parent="Map/2x2Map"]
-layout_mode = 0
-offset_top = 180.0
-offset_right = 200.0
-offset_bottom = 360.0
+[node name="Mask2" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(150, 45)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("17_h1bgf")
 
-[node name="Mask3" type="TextureRect" parent="Map/2x2Map"]
-layout_mode = 0
-offset_left = 200.0
-offset_right = 400.0
-offset_bottom = 180.0
+[node name="Mask3" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(250, 45)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("17_h1bgf")
 
-[node name="Mask4" type="TextureRect" parent="Map/2x2Map"]
-visible = false
-layout_mode = 0
-offset_left = 200.0
-offset_top = 180.0
-offset_right = 400.0
-offset_bottom = 360.0
+[node name="Mask4" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(350, 45)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("17_h1bgf")
 
-[node name="PL_0_0" type="Sprite2D" parent="Map"]
-position = Vector2(809, 123)
-texture = ExtResource("19_fevyy")
+[node name="Mask5" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(50, 135)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
 
-[node name="PL_0_1" type="Sprite2D" parent="Map"]
-position = Vector2(1010, 122)
-texture = ExtResource("19_fevyy")
+[node name="Mask6" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(150, 135)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
 
-[node name="PL_1_0" type="Sprite2D" parent="Map"]
-position = Vector2(807, 306)
-texture = ExtResource("19_fevyy")
+[node name="Mask7" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(250, 135)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
 
-[node name="PL_1_1" type="Sprite2D" parent="Map"]
-position = Vector2(1007, 311)
+[node name="Mask8" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(350, 135)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask9" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(50, 225)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask10" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(150, 225)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask11" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(250, 225)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask12" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(350, 225)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask13" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(50, 315)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask14" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(150, 315)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask15" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(250, 315)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Mask16" type="Sprite2D" parent="Map/4x4Map"]
+position = Vector2(350, 315)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_h1bgf")
+
+[node name="Player_Icon" type="Sprite2D" parent="Map"]
+position = Vector2(1059, 352)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("19_fevyy")
 
 [connection signal="health_change" from="Player_Character" to="." method="_on_player_character_health_change"]

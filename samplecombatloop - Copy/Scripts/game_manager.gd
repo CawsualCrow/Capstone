@@ -111,8 +111,9 @@ func _on_start_game_pressed() -> void:
 	$"Character Creator".hide()
 	$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 	$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
-	$HUD.show()
-	next_turn()
+	$Map.show()
+	$Navigation.show()
+	#next_turn()
 
 
 func _on_player_character_health_change():
@@ -192,16 +193,6 @@ func _on_inventory_button_pressed() -> void:
 
 
 func _on_north_pressed() -> void:
-	var outcome = $Map._move(0,-1)
-	if(outcome == -1):
-		print("Cannot move")
-	if(outcome == 0):
-		print("Event Triggered (new room)")
-	if(outcome == 1):
-		print("Room already visited (no event)")
-
-
-func _on_west_pressed() -> void:
 	var outcome = $Map._move(-1,0)
 	if(outcome == -1):
 		print("Cannot move")
@@ -211,8 +202,18 @@ func _on_west_pressed() -> void:
 		print("Room already visited (no event)")
 
 
+func _on_west_pressed() -> void:
+	var outcome = $Map._move(0,-1)
+	if(outcome == -1):
+		print("Cannot move")
+	if(outcome == 0):
+		print("Event Triggered (new room)")
+	if(outcome == 1):
+		print("Room already visited (no event)")
+
+
 func _on_south_pressed() -> void:
-	var outcome = $Map._move(0,1)
+	var outcome = $Map._move(1,0)
 	if(outcome == -1):
 		print("Cannot move")
 	if(outcome == 0):
@@ -222,7 +223,7 @@ func _on_south_pressed() -> void:
 
 
 func _on_east_pressed() -> void:
-	var outcome = $Map._move(1,0)
+	var outcome = $Map._move(0,1)
 	if(outcome == -1):
 		print("Cannot move")
 	if(outcome == 0):
