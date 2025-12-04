@@ -35,8 +35,8 @@ combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResou
 player_weapon = ExtResource("10_6iyac")
 
 [node name="AI_Character" parent="." instance=ExtResource("2_bo1nx")]
-cur_health = 15
-max_health = 15
+cur_health = 8
+max_health = 8
 combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResource("5_344ge"), ExtResource("6_ynf5e")])
 player_weapon = ExtResource("10_6iyac")
 
@@ -45,54 +45,75 @@ visible = false
 script = ExtResource("7_6bp64")
 
 [node name="Slash" type="Button" parent="HUD"]
-offset_left = 228.0
-offset_top = 414.0
-offset_right = 400.0
-offset_bottom = 496.0
+offset_left = 257.0
+offset_top = 481.0
+offset_right = 429.0
+offset_bottom = 563.0
 theme_override_font_sizes/font_size = 32
 text = "Slash"
 
 [node name="Heal" type="Button" parent="HUD"]
-offset_left = 702.0
-offset_top = 409.0
-offset_right = 888.0
-offset_bottom = 497.0
+offset_left = 699.0
+offset_top = 483.0
+offset_right = 885.0
+offset_bottom = 571.0
 theme_override_font_sizes/font_size = 32
 text = "Heal"
 
 [node name="Player_Health" type="Label" parent="HUD"]
-offset_left = 304.0
-offset_top = 174.0
-offset_right = 344.0
-offset_bottom = 197.0
+offset_left = 39.0
+offset_top = 113.0
+offset_right = 211.0
+offset_bottom = 158.0
 theme_override_font_sizes/font_size = 32
+text = "player health"
 script = ExtResource("8_344ge")
 
 [node name="AI_Health" type="Label" parent="HUD"]
-offset_left = 744.0
-offset_top = 165.0
-offset_right = 784.0
-offset_bottom = 188.0
+offset_left = 914.0
+offset_top = 106.0
+offset_right = 1126.0
+offset_bottom = 151.0
 theme_override_font_sizes/font_size = 32
+text = "enemy health"
+autowrap_mode = 2
 script = ExtResource("8_344ge")
 
 [node name="Text_Output" type="Label" parent="HUD"]
-offset_left = 412.0
-offset_top = 170.0
-offset_right = 683.0
-offset_bottom = 260.0
+offset_left = 329.0
+offset_top = 45.0
+offset_right = 874.0
+offset_bottom = 433.0
 theme_override_font_sizes/font_size = 32
 text = "test"
+autowrap_mode = 2
 
 [node name="Inventory" type="Button" parent="HUD"]
-offset_left = 458.0
-offset_top = 411.0
-offset_right = 636.0
-offset_bottom = 493.0
+offset_left = 477.0
+offset_top = 485.0
+offset_right = 655.0
+offset_bottom = 567.0
 theme_override_font_sizes/font_size = 32
 text = "Inventory"
 
+[node name="Player_Name" type="Label" parent="HUD"]
+offset_left = 39.0
+offset_top = 57.0
+offset_right = 215.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 32
+text = "Adventurer"
+
+[node name="Enemy_Name" type="Label" parent="HUD"]
+offset_left = 930.0
+offset_top = 56.0
+offset_right = 970.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 32
+text = "Monster"
+
 [node name="Character Creator" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="CC_Title" type="Label" parent="Character Creator"]
 offset_left = 441.0
@@ -204,7 +225,7 @@ offset_top = 510.0
 offset_right = 688.0
 offset_bottom = 599.0
 theme_override_font_sizes/font_size = 32
-text = "Next Combat!"
+text = "Continue"
 
 [node name="Stat_boost" type="OptionButton" parent="Level_Up_Screen"]
 offset_left = 290.0
@@ -319,29 +340,23 @@ text = "Use
 Item"
 
 [node name="Game_Over" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Game_Over_Text" type="Label" parent="Game_Over"]
 anchors_preset = -1
-anchor_left = 0.253
-anchor_top = 0.145
-anchor_right = 0.753
-anchor_bottom = 0.557
-offset_left = -60.456
-offset_top = -26.96
-offset_right = 132.544
-offset_bottom = 39.064
+anchor_left = 0.201
+anchor_top = 0.103
+anchor_right = 0.868
+anchor_bottom = 0.617
+offset_left = -0.552002
+offset_top = 0.255997
+offset_right = 0.0640259
+offset_bottom = 0.183929
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
-text = "You feel a sharp pain as the creature attacks you. 
-Your weapon falls from your hand as the world
-spins and slows as your vision fades. Your 
-adventure ends here
-
-You have fallen in the dungeon.
+text = "You have fallen in the dungeon.
 Try again?"
-visible_characters = 0
-visible_ratio = 0.0
+visible_characters_behavior = 1
+visible_ratio = -0.0238095
 
 [node name="Start_Over" type="Button" parent="Game_Over"]
 offset_left = 240.0
@@ -358,8 +373,7 @@ offset_top = 477.0
 offset_right = 885.0
 offset_bottom = 557.0
 theme_override_font_sizes/font_size = 32
-text = "Exit to
-Menu"
+text = "Load Game"
 
 [node name="Event_HUD" type="CanvasLayer" parent="."]
 visible = false
@@ -371,6 +385,7 @@ offset_right = 830.0
 offset_bottom = 325.0
 theme_override_font_sizes/font_size = 32
 text = "Filler Description"
+autowrap_mode = 2
 
 [node name="Continue__To_Combat" type="Button" parent="Event_HUD"]
 offset_left = 436.0

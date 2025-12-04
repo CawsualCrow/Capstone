@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_ov6kd")
 event_name = "Healing Fountain"
-description = "You come across a fountain with a sparkling liquid. Upon drinking it, you feel your strength return to you. Your health is fully restored!"
+description = "You come across a fountain with a sparkling liquid. Upon drinking it, you feel your strength and willpower return to you."
 type = "healing"
 event_effect = ExtResource("1_vw8x8")
 metadata/_custom_type_script = "uid://dhd4k0rt4h01b"

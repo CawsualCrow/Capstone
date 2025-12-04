@@ -76,7 +76,7 @@ func cast_combat_action (action : CombatAction, opponent : Character):
 	var dmg = randi_range(1, 8) # doubles as heal value
 	
 	if (action.heal_amount > 0):
-		action.heal_amount = (dmg + intelligence_bonus + player_weapon.intelligence_bost)
+		action.heal_amount = (dmg + intelligence_bonus + player_weapon.intelligence_boost)
 		heal(action.heal_amount)
 		print("Heal for %s points! (rolled %s + (Int mod) %s + (Weapon bonus) %s)" % [str(action.heal_amount), str(dmg), str(intelligence_bonus), str(player_weapon.intelligence_bost)])
 	if (action.melee_damage > 0):

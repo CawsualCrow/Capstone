@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_egswc")
 event_name = "Stubbed Toe"
-description = "You aren't watching where you step and you stub your toe. It hurts. (take a small amount of damage)"
+description = "You aren't watching where you step and you stub your toe. It hurts."
 type = "damage"
 event_effect = ExtResource("1_otkic")
 metadata/_custom_type_script = "uid://dhd4k0rt4h01b"
