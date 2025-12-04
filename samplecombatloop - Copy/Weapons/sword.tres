@@ -6,6 +6,6 @@
 script = ExtResource("1_4buht")
 weapon_name = "Shortsword"
 weapon_description = "A typical blade among adventurers"
-strength_boost = 1
-intelligence_bost = 0
+strength_boost = 2
+intelligence_boost = 1
 metadata/_custom_type_script = "uid://8cb0deylnmka"

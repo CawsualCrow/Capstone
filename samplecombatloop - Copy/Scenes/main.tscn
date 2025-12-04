@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyq1816yjcpp8"]
+[gd_scene load_steps=22 format=3 uid="uid://dyq1816yjcpp8"]
 
 [ext_resource type="Script" uid="uid://c8ql6gc1c0fe2" path="res://Scripts/game_manager.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://cegfgqsxxut3y" path="res://Scenes/character.tscn" id="2_bo1nx"]
@@ -16,11 +16,19 @@
 [ext_resource type="Script" uid="uid://dhd4k0rt4h01b" path="res://Scripts/random_event.gd" id="9_ynf5e"]
 [ext_resource type="Resource" uid="uid://bbrqvm358vk6x" path="res://Weapons/fist.tres" id="10_6iyac"]
 [ext_resource type="Script" uid="uid://c5krxgxnqu5ie" path="res://Scenes/map.gd" id="16_b3802"]
+[ext_resource type="AudioStream" uid="uid://dusmwrf30gbug" path="res://gameover.wav" id="16_hibaj"]
 [ext_resource type="Texture2D" uid="uid://25cwkiawhkrg" path="res://Textures/Maps/4x4 w doors.png" id="17_fevyy"]
 [ext_resource type="Texture2D" uid="uid://d18dqedta6xcs" path="res://Textures/Maps/Unexplored room.png" id="17_h1bgf"]
+[ext_resource type="AudioStream" uid="uid://blkc5nj037o2c" path="res://House In a Forest Loop.ogg" id="17_pdsj5"]
 [ext_resource type="Texture2D" uid="uid://xey8hvrtngop" path="res://icon.svg" id="19_fevyy"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("player_character", "ai_character")]
+[node name="Main" type="Control" node_paths=PackedStringArray("player_character", "ai_character")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_bo1nx")
 player_character = NodePath("Player_Character")
 ai_character = NodePath("AI_Character")
@@ -80,21 +88,13 @@ autowrap_mode = 2
 script = ExtResource("8_344ge")
 
 [node name="Text_Output" type="Label" parent="HUD"]
-offset_left = 329.0
+offset_left = 297.0
 offset_top = 45.0
-offset_right = 874.0
+offset_right = 842.0
 offset_bottom = 433.0
 theme_override_font_sizes/font_size = 32
 text = "test"
 autowrap_mode = 2
-
-[node name="Inventory" type="Button" parent="HUD"]
-offset_left = 477.0
-offset_top = 485.0
-offset_right = 655.0
-offset_bottom = 567.0
-theme_override_font_sizes/font_size = 32
-text = "Inventory"
 
 [node name="Player_Name" type="Label" parent="HUD"]
 offset_left = 39.0
@@ -111,6 +111,19 @@ offset_right = 970.0
 offset_bottom = 79.0
 theme_override_font_sizes/font_size = 32
 text = "Monster"
+
+[node name="pcon" type="PanelContainer" parent="HUD"]
+offset_left = 295.0
+offset_top = 37.0
+offset_right = 835.0
+offset_bottom = 345.0
+
+[node name="scroller" type="ScrollContainer" parent="HUD/pcon"]
+layout_mode = 2
+
+[node name="text_box" type="VBoxContainer" parent="HUD/pcon/scroller"]
+layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Character Creator" type="CanvasLayer" parent="."]
 visible = false
@@ -199,6 +212,14 @@ offset_right = 655.0
 offset_bottom = 520.0
 theme_override_font_sizes/font_size = 32
 text = "Play Game"
+
+[node name="Load_Game" type="Button" parent="Character Creator"]
+offset_left = 704.0
+offset_top = 416.0
+offset_right = 930.0
+offset_bottom = 516.0
+theme_override_font_sizes/font_size = 32
+text = "Load Game"
 
 [node name="Level_Up_Screen" type="CanvasLayer" parent="."]
 visible = false
@@ -339,24 +360,16 @@ theme_override_font_sizes/font_size = 32
 text = "Use
 Item"
 
-[node name="Game_Over" type="CanvasLayer" parent="."]
-
-[node name="Game_Over_Text" type="Label" parent="Game_Over"]
-anchors_preset = -1
-anchor_left = 0.201
-anchor_top = 0.103
-anchor_right = 0.868
-anchor_bottom = 0.617
-offset_left = -0.552002
-offset_top = 0.255997
-offset_right = 0.0640259
-offset_bottom = 0.183929
-size_flags_horizontal = 4
+[node name="Close_Inventory" type="Button" parent="Inventory"]
+offset_left = 59.0
+offset_top = 91.0
+offset_right = 201.0
+offset_bottom = 154.0
 theme_override_font_sizes/font_size = 32
-text = "You have fallen in the dungeon.
-Try again?"
-visible_characters_behavior = 1
-visible_ratio = -0.0238095
+text = "Close
+Inventory"
+
+[node name="Game_Over" type="CanvasLayer" parent="."]
 
 [node name="Start_Over" type="Button" parent="Game_Over"]
 offset_left = 240.0
@@ -367,13 +380,23 @@ theme_override_font_sizes/font_size = 32
 text = "Return to
 Character Select"
 
-[node name="Quit_to_menu" type="Button" parent="Game_Over"]
+[node name="Load_Game" type="Button" parent="Game_Over"]
 offset_left = 637.0
 offset_top = 477.0
 offset_right = 885.0
 offset_bottom = 557.0
 theme_override_font_sizes/font_size = 32
 text = "Load Game"
+
+[node name="Label" type="Label" parent="Game_Over"]
+offset_left = 290.0
+offset_top = 69.0
+offset_right = 668.0
+offset_bottom = 233.0
+theme_override_font_sizes/font_size = 32
+text = "You have fallen in the dungeon...
+
+Try again?"
 
 [node name="Event_HUD" type="CanvasLayer" parent="."]
 visible = false
@@ -396,6 +419,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 32
 text = "Continue"
+
+[node name="go_sound" type="AudioStreamPlayer2D" parent="Event_HUD"]
+stream = ExtResource("16_hibaj")
+volume_db = 5.0
+attenuation = 0.105112
 
 [node name="Navigation" type="CanvasLayer" parent="."]
 visible = false
@@ -432,21 +460,21 @@ offset_bottom = 616.0
 theme_override_font_sizes/font_size = 32
 text = "East"
 
-[node name="Button5" type="Button" parent="Navigation"]
+[node name="Access_Inventorry" type="Button" parent="Navigation"]
 offset_left = 44.0
 offset_top = 419.0
 offset_right = 242.0
 offset_bottom = 501.0
 theme_override_font_sizes/font_size = 32
-text = "[assign later]"
+text = "Inventory"
 
-[node name="Button6" type="Button" parent="Navigation"]
+[node name="Save_Game" type="Button" parent="Navigation"]
 offset_left = 498.0
 offset_top = 419.0
 offset_right = 696.0
 offset_bottom = 501.0
 theme_override_font_sizes/font_size = 32
-text = "[assign later]"
+text = "Save"
 
 [node name="Output" type="Label" parent="Navigation"]
 offset_left = 45.0
@@ -465,6 +493,11 @@ offset_bottom = 618.0
 theme_override_font_sizes/font_size = 32
 text = "Sample Text: Player Info Here"
 autowrap_mode = 2
+
+[node name="nav_music" type="AudioStreamPlayer2D" parent="Navigation"]
+stream = ExtResource("17_pdsj5")
+volume_db = 5.0
+attenuation = 0.105112
 
 [node name="Map" type="CanvasLayer" parent="."]
 visible = false
@@ -572,14 +605,19 @@ texture = ExtResource("19_fevyy")
 [connection signal="item_selected" from="Character Creator/Ancestry_Selection" to="Player_Character" method="_on_ancestry_selection_item_selected"]
 [connection signal="item_selected" from="Character Creator/Job_Selection" to="Player_Character" method="_on_job_selection_item_selected"]
 [connection signal="pressed" from="Character Creator/Start_Game" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="Level_Up_Screen/Finish_Level_Up" to="." method="_on_finish_level_up_pressed"]
+[connection signal="pressed" from="Character Creator/Load_Game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="Level_Up_Screen/Finish_Level_Up" to="Player_Character" method="_on_finish_level_up_pressed"]
 [connection signal="item_selected" from="Level_Up_Screen/Stat_boost" to="Player_Character" method="_on_option_button_item_selected"]
 [connection signal="pressed" from="Level_Up_Screen/Inventory_Button" to="." method="_on_inventory_button_pressed"]
 [connection signal="item_selected" from="Inventory/Weapon_Selector" to="." method="_on_weapon_selector_item_selected"]
 [connection signal="pressed" from="Inventory/Equip_Weapon" to="." method="_on_equip_weapon_pressed"]
+[connection signal="pressed" from="Inventory/Close_Inventory" to="." method="_on_close_inventory_pressed"]
+[connection signal="pressed" from="Game_Over/Start_Over" to="." method="_on_start_over_pressed"]
+[connection signal="pressed" from="Game_Over/Load_Game" to="." method="_on_load_game_after_loss_pressed"]
 [connection signal="pressed" from="Event_HUD/Continue__To_Combat" to="." method="_on_continue__to_combat_pressed"]
 [connection signal="pressed" from="Navigation/North" to="." method="_on_north_pressed"]
 [connection signal="pressed" from="Navigation/West" to="." method="_on_west_pressed"]
 [connection signal="pressed" from="Navigation/South" to="." method="_on_south_pressed"]
 [connection signal="pressed" from="Navigation/East" to="." method="_on_east_pressed"]
+[connection signal="pressed" from="Navigation/Access_Inventorry" to="." method="_on_access_inventorry_pressed"]
+[connection signal="pressed" from="Navigation/Save_Game" to="." method="_on_save_game_pressed"]

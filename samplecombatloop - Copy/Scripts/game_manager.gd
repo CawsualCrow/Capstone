@@ -5,10 +5,15 @@ extends Node
 @export var slash : CombatAction
 @export var heal : CombatAction
 
+@onready var game_over_sound = $Event_HUD/go_sound
+@onready var navigation_music = $Navigation/nav_music
+
 var cur_weapon_select : int
 
 # PLAYER: Exp variable will increase when enemy is defeated.
 var player_exp : int = 0
+# BOSS boolean (used to present boss in final room)
+var boss_encounter : bool = false
 
 # are these correct?
 @onready var player_health_text = $"HUD/Player Health"
@@ -39,6 +44,7 @@ func _ready():
 	$Event_HUD.hide()
 	$Inventory.hide()
 	$Navigation.hide()
+	navigation_music.stop()
 	$Map.hide()
 
 # Rotate turns in combat
@@ -83,9 +89,10 @@ func end_combat (): # handles player or ai death
 		print("You Lose!")  # NOT WORKING
 		$Event_HUD/Event_Description.text = "You feel a heavy impact as the monster's weapon crushes your chest. The world spins around you as you collapse to the floor, the monster laughing as it stands over you in victory."
 		$Event_HUD.show()
+		game_over_sound.play()
 	elif ($AI_Character.cur_health <= 0):
 		print("You win!")
-		player_exp += 250 #EXP gain from defeating enemy
+		player_exp += 600 #EXP gain from defeating enemy
 		$AI_Character.cur_health = $AI_Character.max_health
 		if (player_exp >= 1000):
 			$Level_Up_Screen.show()
@@ -97,6 +104,7 @@ func end_combat (): # handles player or ai death
 			$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 			$Navigation.show()
 			$Map.show()
+			navigation_music.play()
 
 # COMBAT: Player selects action to perform
 func player_cast_combat_action (action : CombatAction):
@@ -132,6 +140,7 @@ func _on_start_game_pressed() -> void:
 	$Map.show()
 	$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 	$Navigation.show()
+	navigation_music.play()
 	#next_turn()
 
 # COMBAT: Displays/updates health changes on HUD during combat
@@ -146,16 +155,6 @@ func _on_player_character_health_depleted() -> void:
 func _on_ai_character_health_depleted() -> void:
 	pass
 
-#func _on_finish_level_up_pressed() -> void:
-	#$AI_Character.max_health += 10
-	#$AI_Character.cur_health = $AI_Character.max_health
-	#$AI_Character.strength_bonus += 2
-	#$Level_Up_Screen.hide()
-	#$HUD.show()
-	#$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
-	#$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
-	#
-	#next_turn()
 
 # COMBAT: Scales enemy encounters after Player level up
 func _on_player_character_leveled_up() -> void:
@@ -166,35 +165,14 @@ func _on_player_character_leveled_up() -> void:
 	$Level_Up_Screen.hide()
 	$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 	$Navigation.show()
+	navigation_music.play()
 	$Map.show()
 
-	# MOVE THIS TO MOVEMENT FUNCS
-#	event_chance = randi_range(0, 99)
-#	if (event_chance >= 75):
-#		event_selector = randi_range(0, (random_events.size()-1))
-#		# do event, then continue to combat
-#		print("Player health before event ", $Player_Character.cur_health)
-#		$Event_HUD/Event_Description.text = random_events[event_selector].description
-#		var event_action = random_events[event_selector].event_effect
-#		$Player_Character.take_damage(event_action.melee_damage)
-#		$Player_Character.heal(event_action.heal_amount)
-#		print("Player health after event ", $Player_Character.cur_health)
-#		#if (event_action.melee_damage > 0):
-#		#	var event_health = "You take %d points of damage!"
-#		#	$Event_HUD/Event_Description.text = random_events[event_selector].description + event_health
-#		$Event_HUD.show()
-#	else:
-#		$HUD.show()
-#		$HUD/Player_Health.text = str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
-#		$HUD/AI_Health.text = str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
-#		next_turn()
-		
+
 func _event_chance() -> void:
 	event_chance = randi_range(0, 99)
-	if (event_chance >= 66):
+	if (event_chance >= 66): # Random Event Printed to Screen
 		event_selector = randi_range(0, (random_events.size()-1))
-		#print("Player health before event ", $Player_Character.cur_health)
-		#$Event_HUD/Event_Description.text = random_events[event_selector].description
 		$Navigation/Output.text = random_events[event_selector].description
 		var event_action = random_events[event_selector].event_effect
 		$Player_Character.take_damage(event_action.melee_damage)
@@ -202,19 +180,21 @@ func _event_chance() -> void:
 		$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 		if ($Player_Character.cur_health <= 0):
 			$Navigation.hide()
+			navigation_music.stop()
 			$Map.hide()
 			$Game_Over/Game_Over_Text.text = random_events[event_selector].description
 			$Game_Over.show()
-	elif (event_chance >= 33 and event_chance < 66):
+	elif (event_chance >= 33 and event_chance < 66): # COMBAT EVENT
 		$HUD.show()
 		$Navigation.hide()
+		navigation_music.stop()
 		$Map.hide()
 		$HUD/Player_Health.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 		$HUD/AI_Health.text = "Hit Points: " + str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
 		$HUD/Text_Output.text = "You encounter a monster!"
 		next_turn()
 		#combat_event = true
-	else:
+	else: # Step into new room with no event or combat
 		pass
 
 # EVENT SCREEN: transition from event to map, or to combat
@@ -231,6 +211,7 @@ func _on_continue__to_combat_pressed() -> void:
 	else:
 		$Event_HUD.hide()
 		$Navigation.show()
+		navigation_music.play()
 		$Map.show()
 		
 func _on_equip_weapon_pressed() -> void:
@@ -248,6 +229,11 @@ func _on_inventory_button_pressed() -> void:
 # NAVIGATION / MAP: Direction buttons 
 func _on_north_pressed() -> void:
 	var outcome = $Map._move(-1,0)
+	#if ($Map.room_doors == 5): # boss encounter?
+		#$Map.hide()
+		#$Navigation.hide()
+		#$HUD.show()
+		#$HUD/Text_Output.text = "BOSS ENCOUNTER!"
 	if(outcome == -1):
 		#print("Cannot move")
 		$Navigation/Output.text = "> You cannot go that way."
@@ -294,3 +280,123 @@ func _on_east_pressed() -> void:
 	if(outcome == 1):
 		#print("Room already visited (no event)")
 		$Navigation/Output.text = "> You enter the room to the south."
+
+
+func _on_start_over_pressed() -> void:
+	# On Return to Character Select: Reset Player Attributes
+	$Player_Character.max_health = 0
+	$Player_Character.cur_health = 0
+	$Player_Character.strength_bonus = 0
+	$Player_Character.dexterity_bonus = 0
+	$Player_Character.constitution_bonus = 0
+	$Player_Character.intelligence_bonus = 0
+	
+	$Game_Over.hide()
+	$"Character Creator".show()
+	
+
+
+func _on_load_game_after_loss_pressed() -> void:
+	# Load JSON for Player Attributes and Map Progress
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		var node_data = json.data
+	 	
+		$Player_Character.cur_health = "pc_cur_health".to_int()
+		$Player_Character.max_health = "pc_max_health".to_int()
+		player_exp = "exp".to_int()
+		$Player_Character.ancestry = "pc_ancestry".to_int()
+		$Player_Character.job = "pc_job".to_int()
+		$Player_Character.strength_bonus = "pc_str_bonus".to_int()
+		$Player_Character.dexterity_bonus = "pc_dex_bonus".to_int()
+		$Player_Character.constitution_bonus = "pc_con_bonus".to_int()
+		$Player_Character.intelligence_bonus = "pc_int_bonus".to_int()
+		
+		$AI_Character.cur_health = "monster_cur_health".to_int()
+		$AI_Character.max_health = "monster_max_health".to_int()
+		$AI_Character.strength_bonus = "monster_str_bonus".to_int()
+	
+		
+		$Map.map_masks = "map_masks"
+		$Map.visited_room = "map_visited_room"
+		$Map.player_loc_x = "pc_loc_x"
+		$Map.player_loc_y = "pc_loc_y"
+		$Map.cur_col = "cur_map_col"
+		$Map.cur_row = "cur_map_row"
+		$Map.Player_Icon.position.x = "pc_icon_x"
+		$Map.Player_Icon.position.y = "pc_icon_y"
+		$Map.get_current = "cur_map_mask"
+		$Map.visited = "var_visited"
+	
+	$Game_Over.hide()
+	$Navigation.show()
+	navigation_music.play()
+	$Map.show()
+	
+
+
+func _on_close_inventory_pressed() -> void:
+	# Exit Inventory and return to Map/Navigation
+	$Inventory.hide()
+	$Navigation.show()
+	$Map.show()
+
+
+func _on_access_inventorry_pressed() -> void:
+	#Bring up Inventory Scene
+	$Map.hide()
+	$Navigation.hide()
+	$Inventory.show()
+	
+
+func _on_save_game_pressed() -> void:
+	# Save Game Progress (MAY NEED TO REVISE WHAT IS SAVED
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_data = {"pc_cur_health" : $Player_Character.cur_health, "pc_max_health" : $Player_Character.max_health, "exp" : player_exp, "pc_ancestry" : $Player_Character.ancestry, "pc_job" : $Player_Character.job, "pc_str_bonus" : $Player_Character.strength_bonus, "pc_dex_bonus" : $Player_Character.dexterity_bonus, "pc_con_bonus" : $Player_Character.constitution_bonus, "pc_int_bonus" : $Player_Character.intelligence_bonus, "monster_cur_health" : $AI_Character.cur_health, "monster_max_health" : $AI_Character.max_health, "monster_str_bonus" : $AI_Character.strength_bonus, "map_masks" : $Map.map_masks, "map_visited_room" : $Map.visited_room, "pc_loc_x" : $Map.player_loc_x, "pc_loc_y" : $Map.player_loc_y, "cur_map_col" : $Map.cur_col, "cur_map_row" : $Map.cur_row, "pc_icon_x" : $Map.Player_Icon.position.x, "pc_icon_y" : $Map.Player_Icon.position.y, "cur_map_mask" : $Map.get_current} #, "var_visited" : $Map.visited}
+	var json_data = JSON.stringify(save_data)
+	save_file.store_line(json_data)
+	
+
+
+func _on_load_game_pressed() -> void:
+	# Load JSON for Player Attributes and Map Progress
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		var node_data = json.data
+	 	
+		$Player_Character.cur_health = "pc_cur_health".to_int()
+		$Player_Character.max_health = "pc_max_health".to_int()
+		player_exp = "exp".to_int()
+		$Player_Character.ancestry = "pc_ancestry".to_int()
+		$Player_Character.job = "pc_job".to_int()
+		$Player_Character.strength_bonus = "pc_str_bonus".to_int()
+		$Player_Character.dexterity_bonus = "pc_dex_bonus".to_int()
+		$Player_Character.constitution_bonus = "pc_con_bonus".to_int()
+		$Player_Character.intelligence_bonus = "pc_int_bonus".to_int()
+		
+		$AI_Character.cur_health = "monster_cur_health".to_int()
+		$AI_Character.max_health = "monster_max_health".to_int()
+		$AI_Character.strength_bonus = "monster_str_bonus".to_int()
+	
+		
+		$Map.map_masks = "map_masks"
+		$Map.visited_room = "map_visited_room"
+		$Map.player_loc_x = "pc_loc_x"
+		$Map.player_loc_y = "pc_loc_y"
+		$Map.cur_col = "cur_map_col"
+		$Map.cur_row = "cur_map_row"
+		$Map.Player_Icon.position.x = "pc_icon_x"
+		$Map.Player_Icon.position.y = "pc_icon_y"
+		$Map.get_current = "cur_map_mask"
+		$Map.visited = "var_visited"
+	
+	$"Character Creator".hide()
+	$Navigation.show()
+	navigation_music.play()
+	$Map.show()
