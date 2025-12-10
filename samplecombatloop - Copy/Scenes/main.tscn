@@ -49,7 +49,6 @@ combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResou
 player_weapon = ExtResource("10_6iyac")
 
 [node name="HUD" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("7_6bp64")
 
 [node name="Slash" type="Button" parent="HUD"]
@@ -112,19 +111,6 @@ offset_bottom = 79.0
 theme_override_font_sizes/font_size = 32
 text = "Monster"
 
-[node name="pcon" type="PanelContainer" parent="HUD"]
-offset_left = 295.0
-offset_top = 37.0
-offset_right = 835.0
-offset_bottom = 345.0
-
-[node name="scroller" type="ScrollContainer" parent="HUD/pcon"]
-layout_mode = 2
-
-[node name="text_box" type="VBoxContainer" parent="HUD/pcon/scroller"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
 [node name="Character Creator" type="CanvasLayer" parent="."]
 visible = false
 
@@ -151,15 +137,6 @@ offset_right = 571.0
 offset_bottom = 241.0
 theme_override_font_sizes/font_size = 32
 text = "Job"
-
-[node name="Boost_Title" type="Label" parent="Character Creator"]
-offset_left = 777.0
-offset_top = 232.0
-offset_right = 1102.0
-offset_bottom = 325.0
-theme_override_font_sizes/font_size = 32
-text = "Free Boosts (pick 4)
-(later build)"
 
 [node name="Ancestry_Selection" type="OptionButton" parent="Character Creator"]
 offset_left = 49.0
@@ -213,14 +190,6 @@ offset_bottom = 520.0
 theme_override_font_sizes/font_size = 32
 text = "Play Game"
 
-[node name="Load_Game" type="Button" parent="Character Creator"]
-offset_left = 704.0
-offset_top = 416.0
-offset_right = 930.0
-offset_bottom = 516.0
-theme_override_font_sizes/font_size = 32
-text = "Load Game"
-
 [node name="Level_Up_Screen" type="CanvasLayer" parent="."]
 visible = false
 
@@ -264,14 +233,6 @@ popup/item_2/id = 2
 popup/item_3/text = "Intelligence"
 popup/item_3/id = 3
 
-[node name="Inventory_Button" type="Button" parent="Level_Up_Screen"]
-offset_left = 819.0
-offset_top = 519.0
-offset_right = 1015.0
-offset_bottom = 601.0
-theme_override_font_sizes/font_size = 32
-text = "Change Inventory"
-
 [node name="Inventory" type="CanvasLayer" parent="."]
 visible = false
 
@@ -312,54 +273,6 @@ theme_override_font_sizes/font_size = 32
 text = "Equip
 Weapon"
 
-[node name="Armor_Title" type="Label" parent="Inventory"]
-offset_left = 380.0
-offset_top = 302.0
-offset_right = 430.0
-offset_bottom = 325.0
-theme_override_font_sizes/font_size = 32
-text = "Armor"
-
-[node name="Armor_Selector" type="OptionButton" parent="Inventory"]
-offset_left = 377.0
-offset_top = 358.0
-offset_right = 504.0
-offset_bottom = 413.0
-theme_override_font_sizes/font_size = 32
-
-[node name="Equip_Armor" type="Button" parent="Inventory"]
-offset_left = 380.0
-offset_top = 438.0
-offset_right = 487.0
-offset_bottom = 536.0
-theme_override_font_sizes/font_size = 32
-text = "Equip
-Armor"
-
-[node name="Consumables_Title" type="Label" parent="Inventory"]
-offset_left = 686.0
-offset_top = 314.0
-offset_right = 894.0
-offset_bottom = 359.0
-theme_override_font_sizes/font_size = 32
-text = "Consumables"
-
-[node name="Consumables_Selector" type="OptionButton" parent="Inventory"]
-offset_left = 694.0
-offset_top = 367.0
-offset_right = 840.0
-offset_bottom = 429.0
-theme_override_font_sizes/font_size = 32
-
-[node name="Use_Item" type="Button" parent="Inventory"]
-offset_left = 692.0
-offset_top = 446.0
-offset_right = 841.0
-offset_bottom = 544.0
-theme_override_font_sizes/font_size = 32
-text = "Use
-Item"
-
 [node name="Close_Inventory" type="Button" parent="Inventory"]
 offset_left = 59.0
 offset_top = 91.0
@@ -370,6 +283,7 @@ text = "Close
 Inventory"
 
 [node name="Game_Over" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Start_Over" type="Button" parent="Game_Over"]
 offset_left = 240.0
@@ -379,14 +293,6 @@ offset_bottom = 558.0
 theme_override_font_sizes/font_size = 32
 text = "Return to
 Character Select"
-
-[node name="Load_Game" type="Button" parent="Game_Over"]
-offset_left = 637.0
-offset_top = 477.0
-offset_right = 885.0
-offset_bottom = 557.0
-theme_override_font_sizes/font_size = 32
-text = "Load Game"
 
 [node name="Label" type="Label" parent="Game_Over"]
 offset_left = 290.0
@@ -467,14 +373,6 @@ offset_right = 242.0
 offset_bottom = 501.0
 theme_override_font_sizes/font_size = 32
 text = "Inventory"
-
-[node name="Save_Game" type="Button" parent="Navigation"]
-offset_left = 498.0
-offset_top = 419.0
-offset_right = 696.0
-offset_bottom = 501.0
-theme_override_font_sizes/font_size = 32
-text = "Save"
 
 [node name="Output" type="Label" parent="Navigation"]
 offset_left = 45.0
@@ -605,19 +503,15 @@ texture = ExtResource("19_fevyy")
 [connection signal="item_selected" from="Character Creator/Ancestry_Selection" to="Player_Character" method="_on_ancestry_selection_item_selected"]
 [connection signal="item_selected" from="Character Creator/Job_Selection" to="Player_Character" method="_on_job_selection_item_selected"]
 [connection signal="pressed" from="Character Creator/Start_Game" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="Character Creator/Load_Game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="Level_Up_Screen/Finish_Level_Up" to="Player_Character" method="_on_finish_level_up_pressed"]
 [connection signal="item_selected" from="Level_Up_Screen/Stat_boost" to="Player_Character" method="_on_option_button_item_selected"]
-[connection signal="pressed" from="Level_Up_Screen/Inventory_Button" to="." method="_on_inventory_button_pressed"]
 [connection signal="item_selected" from="Inventory/Weapon_Selector" to="." method="_on_weapon_selector_item_selected"]
 [connection signal="pressed" from="Inventory/Equip_Weapon" to="." method="_on_equip_weapon_pressed"]
 [connection signal="pressed" from="Inventory/Close_Inventory" to="." method="_on_close_inventory_pressed"]
 [connection signal="pressed" from="Game_Over/Start_Over" to="." method="_on_start_over_pressed"]
-[connection signal="pressed" from="Game_Over/Load_Game" to="." method="_on_load_game_after_loss_pressed"]
 [connection signal="pressed" from="Event_HUD/Continue__To_Combat" to="." method="_on_continue__to_combat_pressed"]
 [connection signal="pressed" from="Navigation/North" to="." method="_on_north_pressed"]
 [connection signal="pressed" from="Navigation/West" to="." method="_on_west_pressed"]
 [connection signal="pressed" from="Navigation/South" to="." method="_on_south_pressed"]
 [connection signal="pressed" from="Navigation/East" to="." method="_on_east_pressed"]
 [connection signal="pressed" from="Navigation/Access_Inventorry" to="." method="_on_access_inventorry_pressed"]
-[connection signal="pressed" from="Navigation/Save_Game" to="." method="_on_save_game_pressed"]
