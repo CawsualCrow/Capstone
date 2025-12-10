@@ -49,6 +49,7 @@ combat_actions = Array[ExtResource("3_21xkr")]([ExtResource("4_6bp64"), ExtResou
 player_weapon = ExtResource("10_6iyac")
 
 [node name="HUD" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("7_6bp64")
 
 [node name="Slash" type="Button" parent="HUD"]
@@ -234,7 +235,6 @@ popup/item_3/text = "Intelligence"
 popup/item_3/id = 3
 
 [node name="Inventory" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Inventory_Title" type="Label" parent="Inventory"]
 offset_left = 529.0

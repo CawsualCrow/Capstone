@@ -78,11 +78,11 @@ func cast_combat_action (action : CombatAction, opponent : Character):
 	if (action.heal_amount > 0):
 		action.heal_amount = (dmg + intelligence_bonus + player_weapon.intelligence_boost)
 		heal(action.heal_amount)
-		print("Heal for %s points! (rolled %s + (Int mod) %s + (Weapon bonus) %s)" % [str(action.heal_amount), str(dmg), str(intelligence_bonus), str(player_weapon.intelligence_bost)])
+		# print("Heal for %s points! (rolled %s + (Int mod) %s + (Weapon bonus) %s)" % [str(action.heal_amount), str(dmg), str(intelligence_bonus), str(player_weapon.intelligence_bost)])
 	if (action.melee_damage > 0):
 		action.melee_damage = (dmg + strength_bonus + player_weapon.strength_boost)
 		opponent.take_damage(action.melee_damage)
-		print("Take %s damage! (rolled %s + (Str mod) %s + (Weapon bonus) %s)" % [str(action.melee_damage), str(dmg), str(strength_bonus), str(player_weapon.strength_boost)])
+		# print("Take %s damage! (rolled %s + (Str mod) %s + (Weapon bonus) %s)" % [str(action.melee_damage), str(dmg), str(strength_bonus), str(player_weapon.strength_boost)])
 
 func _play_audio (steam : AudioStream):
 	pass
