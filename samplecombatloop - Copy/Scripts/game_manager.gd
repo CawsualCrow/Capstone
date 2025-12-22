@@ -5,8 +5,6 @@ extends Node
 @export var slash : CombatAction
 @export var heal : CombatAction
 
-@onready var game_over_sound = $Event_HUD/go_sound
-@onready var navigation_music = $Navigation/nav_music
 
 var cur_weapon_select : int
 
@@ -44,7 +42,6 @@ func _ready():
 	$Event_HUD.hide()
 	$Inventory.hide()
 	$Navigation.hide()
-	navigation_music.stop()
 	$Map.hide()
 
 # Rotate turns in combat
@@ -89,7 +86,6 @@ func end_combat (): # handles player or ai death
 		print("You Lose!")  # NOT WORKING
 		$Event_HUD/Event_Description.text = "You feel a heavy impact as the monster's weapon crushes your chest. The world spins around you as you collapse to the floor, the monster laughing as it stands over you in victory."
 		$Event_HUD.show()
-		game_over_sound.play()
 	elif ($AI_Character.cur_health <= 0):
 		print("You win!")
 		player_exp += 600 #EXP gain from defeating enemy
@@ -104,7 +100,6 @@ func end_combat (): # handles player or ai death
 			$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 			$Navigation.show()
 			$Map.show()
-			navigation_music.play()
 
 # COMBAT: Player selects action to perform
 func player_cast_combat_action (action : CombatAction):
@@ -140,7 +135,6 @@ func _on_start_game_pressed() -> void:
 	$Map.show()
 	$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 	$Navigation.show()
-	navigation_music.play()
 	#next_turn()
 
 # COMBAT: Displays/updates health changes on HUD during combat
@@ -165,7 +159,6 @@ func _on_player_character_leveled_up() -> void:
 	$Level_Up_Screen.hide()
 	$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 	$Navigation.show()
-	navigation_music.play()
 	$Map.show()
 
 
@@ -180,14 +173,12 @@ func _event_chance() -> void:
 		$Navigation/PlayerInfo.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 		if ($Player_Character.cur_health <= 0):
 			$Navigation.hide()
-			navigation_music.stop()
 			$Map.hide()
 			$Game_Over/Game_Over_Text.text = random_events[event_selector].description
 			$Game_Over.show()
 	elif (event_chance >= 33 and event_chance < 66): # COMBAT EVENT
 		$HUD.show()
 		$Navigation.hide()
-		navigation_music.stop()
 		$Map.hide()
 		$HUD/Player_Health.text = "Hit Points: " + str($Player_Character.cur_health) + " / " + str($Player_Character.max_health)
 		$HUD/AI_Health.text = "Hit Points: " + str($AI_Character.cur_health) + " / " + str($AI_Character.max_health)
@@ -211,7 +202,6 @@ func _on_continue__to_combat_pressed() -> void:
 	else:
 		$Event_HUD.hide()
 		$Navigation.show()
-		navigation_music.play()
 		$Map.show()
 		
 func _on_equip_weapon_pressed() -> void:
@@ -333,7 +323,6 @@ func _on_load_game_after_loss_pressed() -> void:
 	
 	$Game_Over.hide()
 	$Navigation.show()
-	navigation_music.play()
 	$Map.show()
 	
 
@@ -398,5 +387,4 @@ func _on_load_game_pressed() -> void:
 	
 	$"Character Creator".hide()
 	$Navigation.show()
-	navigation_music.play()
 	$Map.show()
